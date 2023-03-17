@@ -1,15 +1,18 @@
+
+import javax.swing.JRadioButton;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author aluno
  */
 public class Main extends javax.swing.JFrame {
-    
+
     public double valorTotal, valorRecebido, Troco;
+    public String pao, queijo, molhos, saladas, adicionais, bebidas;
 
     /**
      * Creates new form Vendas
@@ -81,6 +84,7 @@ public class Main extends javax.swing.JFrame {
         btn_subOriginal = new javax.swing.JRadioButton();
         btn_vegetariano = new javax.swing.JRadioButton();
         lbl_dia = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         lbl_pao = new javax.swing.JLabel();
         lbl_lanche = new javax.swing.JLabel();
         lbl_saladas = new javax.swing.JLabel();
@@ -111,10 +115,20 @@ public class Main extends javax.swing.JFrame {
         buttonGroupPao.add(btn_italiano);
         btn_italiano.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         btn_italiano.setText("Italiano Branco");
+        btn_italiano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_italianoActionPerformed(evt);
+            }
+        });
 
         buttonGroupPao.add(btn_parmesao);
         btn_parmesao.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         btn_parmesao.setText("Parmesão com orégano");
+        btn_parmesao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_parmesaoActionPerformed(evt);
+            }
+        });
 
         buttonGroupPao.add(btn_integral);
         btn_integral.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
@@ -156,7 +170,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(btn_parmesao)
                 .addGap(18, 18, 18)
                 .addComponent(btn_integral)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Swis721 Ex BT", 1, 14)); // NOI18N
@@ -174,10 +188,20 @@ public class Main extends javax.swing.JFrame {
         buttonGroupQueijo.add(btn_mussarela);
         btn_mussarela.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         btn_mussarela.setText("Mussarela ralada");
+        btn_mussarela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mussarelaActionPerformed(evt);
+            }
+        });
 
         buttonGroupQueijo.add(btn_gorgonzola);
         btn_gorgonzola.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         btn_gorgonzola.setText("Gorgonzola");
+        btn_gorgonzola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_gorgonzolaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -210,7 +234,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(btn_mussarela)
                 .addGap(18, 18, 18)
                 .addComponent(btn_gorgonzola)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Swis721 Ex BT", 1, 14)); // NOI18N
@@ -218,6 +242,11 @@ public class Main extends javax.swing.JFrame {
 
         check_alface.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_alface.setText("Alface");
+        check_alface.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_alfaceActionPerformed(evt);
+            }
+        });
 
         check_tomate.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_tomate.setText("Tomate");
@@ -419,14 +448,19 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(check_coca)
                 .addGap(18, 18, 18)
                 .addComponent(check_guarana)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(check_fanta)
-                .addGap(45, 45, 45))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         buttonGroupLanche.add(btn_dia);
         btn_dia.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         btn_dia.setText("Do dia");
+        btn_dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_diaActionPerformed(evt);
+            }
+        });
 
         buttonGroupLanche.add(btn_churrasco15);
         btn_churrasco15.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
@@ -481,32 +515,42 @@ public class Main extends javax.swing.JFrame {
 
         lbl_dia.setText("dia");
 
+        jLabel12.setFont(new java.awt.Font("Swis721 Ex BT", 1, 14)); // NOI18N
+        jLabel12.setText("Lanches");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(btn_dia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbl_dia))
-                    .addComponent(btn_churrasco15)
-                    .addComponent(btn_frangoEmpanado)
-                    .addComponent(btn_frangoTeriak)
-                    .addComponent(btn_bmtItaliano)
-                    .addComponent(btn_carneSupreme)
-                    .addComponent(btn_steakChurrasco)
-                    .addComponent(btn_subCarneSeca)
-                    .addComponent(btn_subOriginal)
-                    .addComponent(btn_vegetariano))
+                        .addContainerGap()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(btn_dia)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_dia))
+                            .addComponent(btn_churrasco15)
+                            .addComponent(btn_frangoEmpanado)
+                            .addComponent(btn_frangoTeriak)
+                            .addComponent(btn_bmtItaliano)
+                            .addComponent(btn_carneSupreme)
+                            .addComponent(btn_steakChurrasco)
+                            .addComponent(btn_subCarneSeca)
+                            .addComponent(btn_subOriginal)
+                            .addComponent(btn_vegetariano)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel12)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_dia)
                     .addComponent(lbl_dia))
@@ -528,7 +572,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(btn_subOriginal)
                 .addGap(18, 18, 18)
                 .addComponent(btn_vegetariano)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         lbl_pao.setText("pao");
@@ -607,15 +651,14 @@ public class Main extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lbl_lanche)
@@ -631,7 +674,7 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(lbl_adicionais)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lbl_bebidas)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -650,7 +693,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(tf_troco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11))
                                 .addGap(36, 36, 36)))))
-                .addGap(35, 35, 35))
+                .addGap(20, 20, 20))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 0));
@@ -719,23 +762,30 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cheddarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cheddarActionPerformed
-        // TODO add your handling code here:
+        if (btn_cheddar.isSelected()) {
+            queijo = btn_cheddar.getText();
+            lbl_queijo.setText(queijo);
+        }
     }//GEN-LAST:event_btn_cheddarActionPerformed
 
     private void btn_integralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_integralActionPerformed
-        // TODO add your handling code here:
+        if (btn_integral.isSelected()) {
+            pao = btn_integral.getText();
+            lbl_pao.setText(pao);
+        }
     }//GEN-LAST:event_btn_integralActionPerformed
 
     private void btn_bmtItalianoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bmtItalianoActionPerformed
-        
+
     }//GEN-LAST:event_btn_bmtItalianoActionPerformed
 
     private void btn_churrasco15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_churrasco15ActionPerformed
         if (btn_churrasco15.isSelected()) {
             valorTotal = 22;
             tf_total.setText(String.valueOf(valorTotal));
-        }        
-        
+            lbl_lanche.setText("Churrasco");
+        }
+
 
     }//GEN-LAST:event_btn_churrasco15ActionPerformed
 
@@ -745,6 +795,45 @@ public class Main extends javax.swing.JFrame {
             tf_total.setText(String.valueOf(valorTotal));
         }
     }//GEN-LAST:event_btn_frangoEmpanadoActionPerformed
+
+    private void btn_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_diaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_diaActionPerformed
+
+    private void btn_italianoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_italianoActionPerformed
+        if (btn_italiano.isSelected()) {
+            pao = btn_italiano.getText();
+            lbl_pao.setText(pao);
+        }
+    }//GEN-LAST:event_btn_italianoActionPerformed
+
+    private void btn_parmesaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_parmesaoActionPerformed
+        if (btn_parmesao.isSelected()) {
+            pao = btn_parmesao.getText();
+            lbl_pao.setText(pao);
+        }
+    }//GEN-LAST:event_btn_parmesaoActionPerformed
+
+    private void btn_mussarelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mussarelaActionPerformed
+        if (btn_mussarela.isSelected()) {
+            queijo = btn_mussarela.getText();
+            lbl_queijo.setText(queijo);
+        }
+    }//GEN-LAST:event_btn_mussarelaActionPerformed
+
+    private void btn_gorgonzolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gorgonzolaActionPerformed
+        if (btn_gorgonzola.isSelected()) {
+            queijo = btn_gorgonzola.getText();
+            lbl_queijo.setText(queijo);
+        }
+    }//GEN-LAST:event_btn_gorgonzolaActionPerformed
+
+    private void check_alfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_alfaceActionPerformed
+            if (check_alface.isSelected()) {
+            saladas = check_alface.getText();
+            lbl_saladas.setText(saladas);
+        }
+    }//GEN-LAST:event_check_alfaceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -824,6 +913,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
