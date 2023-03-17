@@ -34,10 +34,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -116,18 +113,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbl_pao" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_lanche" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_saladas" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_queijo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_molhos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_adicionais" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_bebidas" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
@@ -148,6 +133,18 @@
                               </Group>
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbl_saladas" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_pao" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_lanche" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_molhos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_adicionais" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_bebidas" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_queijo" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -164,14 +161,15 @@
                                   <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                       <Component id="lbl_lanche" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="lbl_pao" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lbl_queijo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Component id="lbl_saladas" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lbl_queijo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="lbl_molhos" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="lbl_adicionais" min="-2" max="-2" attributes="0"/>
@@ -485,6 +483,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Tomate"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_tomateActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="check_pepino">
                   <Properties>
@@ -761,6 +762,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Coca-cola R$ 5,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_cocaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="check_fanta">
                   <Properties>
@@ -772,6 +776,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Fanta Laranja R$ 4,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_fantaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="check_guarana">
                   <Properties>
@@ -783,6 +790,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Guaran&#xe1; R$ 4,50"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_guaranaActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -907,6 +917,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Frango Teriak 15cm R$ 25,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_frangoTeriakActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="btn_bmtItaliano">
                   <Properties>
@@ -932,6 +945,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Carne Supreme 30cm R$ 50,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_carneSupremeActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="btn_steakChurrasco">
                   <Properties>
@@ -943,6 +959,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Steak Churrasco 30cm R$ 37,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_steakChurrascoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="btn_subCarneSeca">
                   <Properties>
@@ -954,6 +973,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Sub Carne Seca c/ Cc 30cm R$ 47,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_subCarneSecaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="btn_subOriginal">
                   <Properties>
@@ -965,6 +987,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Receita Sub Original R$ 55,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_subOriginalActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="btn_vegetariano">
                   <Properties>
@@ -976,6 +1001,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Vegetariano R$ 15,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_vegetarianoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl_dia">
                   <Properties>
