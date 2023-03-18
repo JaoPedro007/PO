@@ -16,6 +16,8 @@ public class Main extends javax.swing.JFrame {
     public double valorTotal, valorRecebido, Troco;
     public String pao, queijo, molhos, saladas, adicionais, bebidas;
     ArrayList<String> salada = new ArrayList<>();
+    ArrayList<String> molho = new ArrayList<>();
+    ArrayList<String> adicional = new ArrayList<>();
 
     /**
      * Creates new form Vendas
@@ -54,17 +56,11 @@ public class Main extends javax.swing.JFrame {
         check_alface = new javax.swing.JCheckBox();
         check_tomate = new javax.swing.JCheckBox();
         check_pepino = new javax.swing.JCheckBox();
-        check_cebolaRoxa = new javax.swing.JCheckBox();
-        check_azeitona = new javax.swing.JCheckBox();
-        check_pimentao = new javax.swing.JCheckBox();
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         check_maioneseCaseira = new javax.swing.JCheckBox();
         check_barbecue = new javax.swing.JCheckBox();
         check_cebolaAgridoce = new javax.swing.JCheckBox();
-        check_mostardaMel = new javax.swing.JCheckBox();
-        check_supreme = new javax.swing.JCheckBox();
-        check_chipotle = new javax.swing.JCheckBox();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         check_bacon = new javax.swing.JCheckBox();
@@ -76,7 +72,6 @@ public class Main extends javax.swing.JFrame {
         check_fanta = new javax.swing.JRadioButton();
         check_guarana = new javax.swing.JRadioButton();
         jPanel10 = new javax.swing.JPanel();
-        btn_dia = new javax.swing.JRadioButton();
         btn_churrasco15 = new javax.swing.JRadioButton();
         btn_frangoEmpanado = new javax.swing.JRadioButton();
         btn_frangoTeriak = new javax.swing.JRadioButton();
@@ -86,7 +81,6 @@ public class Main extends javax.swing.JFrame {
         btn_subCarneSeca = new javax.swing.JRadioButton();
         btn_subOriginal = new javax.swing.JRadioButton();
         btn_vegetariano = new javax.swing.JRadioButton();
-        lbl_dia = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lbl_pao = new javax.swing.JLabel();
         lbl_lanche = new javax.swing.JLabel();
@@ -101,6 +95,14 @@ public class Main extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         tf_troco = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        lbl_lanche1 = new javax.swing.JLabel();
+        lbl_pao1 = new javax.swing.JLabel();
+        lbl_queijo1 = new javax.swing.JLabel();
+        lbl_saladas1 = new javax.swing.JLabel();
+        lbl_molhos1 = new javax.swing.JLabel();
+        lbl_adicionais1 = new javax.swing.JLabel();
+        lbl_bebidas1 = new javax.swing.JLabel();
+        btn_confirmar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -261,35 +263,27 @@ public class Main extends javax.swing.JFrame {
 
         check_pepino.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_pepino.setText("Pepino");
-
-        check_cebolaRoxa.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
-        check_cebolaRoxa.setText("Cebola Roxa");
-
-        check_azeitona.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
-        check_azeitona.setText("Azeitona");
-
-        check_pimentao.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
-        check_pimentao.setText("Pimentão");
+        check_pepino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_pepinoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(check_alface)
-                    .addComponent(check_tomate)
-                    .addComponent(check_pepino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(check_cebolaRoxa)
-                    .addComponent(check_azeitona)
-                    .addComponent(check_pimentao))
-                .addGap(26, 26, 26))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel5)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(check_alface)
+                            .addComponent(check_tomate)
+                            .addComponent(check_pepino)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -298,17 +292,11 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addGap(26, 26, 26)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_alface)
-                    .addComponent(check_cebolaRoxa))
+                .addComponent(check_alface)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_tomate)
-                    .addComponent(check_azeitona))
+                .addComponent(check_tomate)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_pepino)
-                    .addComponent(check_pimentao))
+                .addComponent(check_pepino)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -317,42 +305,44 @@ public class Main extends javax.swing.JFrame {
 
         check_maioneseCaseira.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_maioneseCaseira.setText("Maionese Caseira");
+        check_maioneseCaseira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_maioneseCaseiraActionPerformed(evt);
+            }
+        });
 
         check_barbecue.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_barbecue.setText("Barbecue");
+        check_barbecue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_barbecueActionPerformed(evt);
+            }
+        });
 
         check_cebolaAgridoce.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_cebolaAgridoce.setText("Cebola Agridoce");
-
-        check_mostardaMel.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
-        check_mostardaMel.setText("Mostarda e Mel");
-
-        check_supreme.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
-        check_supreme.setText("Supreme");
-
-        check_chipotle.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
-        check_chipotle.setText("Chipotle");
+        check_cebolaAgridoce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_cebolaAgridoceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(check_barbecue)
-                    .addComponent(check_maioneseCaseira)
-                    .addComponent(check_cebolaAgridoce))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(check_supreme)
-                    .addComponent(check_mostardaMel)
-                    .addComponent(check_chipotle))
-                .addContainerGap())
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(check_barbecue)
+                            .addComponent(check_maioneseCaseira)
+                            .addComponent(check_cebolaAgridoce)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel6)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,18 +350,12 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(22, 22, 22)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_maioneseCaseira)
-                    .addComponent(check_mostardaMel))
+                .addComponent(check_maioneseCaseira)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_barbecue)
-                    .addComponent(check_supreme))
+                .addComponent(check_barbecue)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_cebolaAgridoce)
-                    .addComponent(check_chipotle))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(check_cebolaAgridoce)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Swis721 Ex BT", 1, 14)); // NOI18N
@@ -379,12 +363,27 @@ public class Main extends javax.swing.JFrame {
 
         check_bacon.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_bacon.setText("Bacon R$ 12,00");
+        check_bacon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_baconActionPerformed(evt);
+            }
+        });
 
         check_creamCheese.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_creamCheese.setText("Cream Cheese R$ 8,00");
+        check_creamCheese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_creamCheeseActionPerformed(evt);
+            }
+        });
 
         check_peperone.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
         check_peperone.setText("Peperone R$ 7,00");
+        check_peperone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_peperoneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -473,17 +472,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(check_guarana)
                 .addGap(18, 18, 18)
                 .addComponent(check_fanta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
-
-        buttonGroupLanche.add(btn_dia);
-        btn_dia.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
-        btn_dia.setText("Do dia");
-        btn_dia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_diaActionPerformed(evt);
-            }
-        });
 
         buttonGroupLanche.add(btn_churrasco15);
         btn_churrasco15.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
@@ -566,8 +556,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        lbl_dia.setText("dia");
-
         jLabel12.setFont(new java.awt.Font("Swis721 Ex BT", 1, 14)); // NOI18N
         jLabel12.setText("Lanches");
 
@@ -580,10 +568,6 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(btn_dia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbl_dia))
                             .addComponent(btn_churrasco15)
                             .addComponent(btn_frangoEmpanado)
                             .addComponent(btn_frangoTeriak)
@@ -603,11 +587,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_dia)
-                    .addComponent(lbl_dia))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btn_churrasco15)
                 .addGap(18, 18, 18)
                 .addComponent(btn_frangoEmpanado)
@@ -628,24 +608,35 @@ public class Main extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        lbl_pao.setText("pao");
+        lbl_pao.setFont(new java.awt.Font("Swis721 BT", 0, 12)); // NOI18N
 
-        lbl_lanche.setText("lanche");
+        lbl_lanche.setFont(new java.awt.Font("Swis721 BT", 0, 12)); // NOI18N
 
-        lbl_saladas.setText("saladas");
+        lbl_saladas.setFont(new java.awt.Font("Swis721 BT", 0, 12)); // NOI18N
 
-        lbl_queijo.setText("queijo");
+        lbl_queijo.setFont(new java.awt.Font("Swis721 BT", 0, 12)); // NOI18N
 
-        lbl_molhos.setText("molhos");
+        lbl_molhos.setFont(new java.awt.Font("Swis721 BT", 0, 12)); // NOI18N
 
-        lbl_adicionais.setText("adicionais");
+        lbl_adicionais.setFont(new java.awt.Font("Swis721 BT", 0, 12)); // NOI18N
 
-        lbl_bebidas.setText("bebidas");
+        lbl_bebidas.setFont(new java.awt.Font("Swis721 BT", 0, 12)); // NOI18N
 
         tf_total.setEditable(false);
+        tf_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_totalActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Swis721 Ex BT", 1, 13)); // NOI18N
         jLabel9.setText("TOTAL");
+
+        tf_recebido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_recebidoActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Swis721 Ex BT", 1, 13)); // NOI18N
         jLabel10.setText("RECEBIDO");
@@ -654,6 +645,35 @@ public class Main extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Swis721 Ex BT", 1, 13)); // NOI18N
         jLabel11.setText("TROCO");
+
+        lbl_lanche1.setFont(new java.awt.Font("Swis721 Ex BT", 1, 12)); // NOI18N
+        lbl_lanche1.setText("Lanche: ");
+
+        lbl_pao1.setFont(new java.awt.Font("Swis721 Ex BT", 1, 12)); // NOI18N
+        lbl_pao1.setText("Pão:");
+
+        lbl_queijo1.setFont(new java.awt.Font("Swis721 Ex BT", 1, 12)); // NOI18N
+        lbl_queijo1.setText("Queijo: ");
+
+        lbl_saladas1.setFont(new java.awt.Font("Swis721 Ex BT", 1, 12)); // NOI18N
+        lbl_saladas1.setText("Saladas: ");
+
+        lbl_molhos1.setFont(new java.awt.Font("Swis721 Ex BT", 1, 12)); // NOI18N
+        lbl_molhos1.setText("Molhos: ");
+
+        lbl_adicionais1.setFont(new java.awt.Font("Swis721 Ex BT", 1, 12)); // NOI18N
+        lbl_adicionais1.setText("Adiconais: ");
+
+        lbl_bebidas1.setFont(new java.awt.Font("Swis721 Ex BT", 1, 12)); // NOI18N
+        lbl_bebidas1.setText("Bebidas");
+
+        btn_confirmar.setFont(new java.awt.Font("Swis721 Ex BT", 0, 12)); // NOI18N
+        btn_confirmar.setText("Confirmar");
+        btn_confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_confirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -668,86 +688,115 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addComponent(tf_recebido, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tf_troco, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(55, 55, 55))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_saladas)
+                            .addComponent(lbl_pao1)
+                            .addComponent(lbl_lanche1)
+                            .addComponent(lbl_adicionais1)
+                            .addComponent(lbl_bebidas1)
+                            .addComponent(lbl_queijo1)
+                            .addComponent(lbl_molhos1))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_pao)
+                            .addComponent(lbl_queijo)
                             .addComponent(lbl_lanche)
-                            .addComponent(lbl_molhos)
                             .addComponent(lbl_adicionais)
-                            .addComponent(lbl_bebidas)
-                            .addComponent(lbl_queijo))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(lbl_molhos)
+                            .addComponent(lbl_bebidas)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lbl_saladas1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_saladas))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(59, 59, 59)
+                        .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn_confirmar)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11))
+                            .addGap(25, 25, 25)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tf_troco, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_recebido, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_lanche1)
+                            .addComponent(lbl_lanche))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_pao1)
+                            .addComponent(lbl_pao))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_queijo1)
+                            .addComponent(lbl_queijo))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_saladas1)
+                            .addComponent(lbl_saladas))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_molhos1)
+                            .addComponent(lbl_molhos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_adicionais1)
+                            .addComponent(lbl_adicionais))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_bebidas1)
+                            .addComponent(lbl_bebidas))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tf_recebido, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tf_troco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_confirmar)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lbl_lanche)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbl_pao)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbl_queijo)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbl_saladas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbl_molhos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbl_adicionais)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbl_bebidas)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tf_recebido, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tf_troco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11))
-                                .addGap(36, 36, 36)))))
-                .addGap(20, 20, 20))
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(12, 12, 12)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(20, 20, 20))))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 0));
@@ -854,10 +903,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_frangoEmpanadoActionPerformed
 
-    private void btn_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_diaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_diaActionPerformed
-
     private void btn_italianoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_italianoActionPerformed
         if (btn_italiano.isSelected()) {
             pao = btn_italiano.getText();
@@ -887,15 +932,17 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_gorgonzolaActionPerformed
 
     private void check_alfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_alfaceActionPerformed
-        if(check_alface.isSelected()){
-            salada.add("Alface");            
+        if (check_alface.isSelected()) {
+            salada.add("Alface");
             lbl_saladas.setText(String.valueOf(salada));
-            
+        }else{
+            salada.remove("Alface");
+            lbl_saladas.setText(String.valueOf(salada));
         }
     }//GEN-LAST:event_check_alfaceActionPerformed
 
     private void btn_frangoTeriakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_frangoTeriakActionPerformed
-           if (btn_frangoTeriak.isSelected()) {
+        if (btn_frangoTeriak.isSelected()) {
             valorTotal = 25;
             tf_total.setText(String.valueOf(valorTotal));
             lbl_lanche.setText("Frango Teriak 15cm");
@@ -903,7 +950,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_frangoTeriakActionPerformed
 
     private void btn_carneSupremeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_carneSupremeActionPerformed
-        
+
         if (btn_carneSupreme.isSelected()) {
             valorTotal = 50;
             tf_total.setText(String.valueOf(valorTotal));
@@ -912,7 +959,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_carneSupremeActionPerformed
 
     private void btn_steakChurrascoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_steakChurrascoActionPerformed
-            if (btn_steakChurrasco.isSelected()) {
+        if (btn_steakChurrasco.isSelected()) {
             valorTotal = 37;
             tf_total.setText(String.valueOf(valorTotal));
             lbl_lanche.setText("Steak Churrasco 30cm");
@@ -920,7 +967,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_steakChurrascoActionPerformed
 
     private void btn_subCarneSecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_subCarneSecaActionPerformed
-        
+
         if (btn_subCarneSeca.isSelected()) {
             valorTotal = 47;
             tf_total.setText(String.valueOf(valorTotal));
@@ -929,7 +976,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_subCarneSecaActionPerformed
 
     private void btn_subOriginalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_subOriginalActionPerformed
-        
+
         if (btn_subOriginal.isSelected()) {
             valorTotal = 55;
             tf_total.setText(String.valueOf(valorTotal));
@@ -947,36 +994,161 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_vegetarianoActionPerformed
 
     private void check_cocaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_cocaActionPerformed
-        if(check_coca.isSelected()){
+        if (check_coca.isSelected()) {
             valorTotal += 5;
             tf_total.setText(String.valueOf(valorTotal));
             lbl_bebidas.setText("Coca-Cola");
         }
+        else{
+            valorTotal -= 5;
+            tf_total.setText(String.valueOf(valorTotal));
+            lbl_bebidas.setText(String.valueOf(bebidas));
+            
+        }
     }//GEN-LAST:event_check_cocaActionPerformed
 
     private void check_guaranaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_guaranaActionPerformed
-        if(check_guarana.isSelected()){
+        if (check_guarana.isSelected()) {
             valorTotal += 4.5;
             tf_total.setText(String.valueOf(valorTotal));
             lbl_bebidas.setText("Guaraná");
         }
+          else{
+            valorTotal -= 4.5;
+            tf_total.setText(String.valueOf(valorTotal));
+            lbl_bebidas.setText(String.valueOf(bebidas));
+            
+        }
     }//GEN-LAST:event_check_guaranaActionPerformed
 
     private void check_fantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_fantaActionPerformed
-        if(check_fanta.isSelected()){
+        if (check_fanta.isSelected()) {
             valorTotal += 4;
             tf_total.setText(String.valueOf(valorTotal));
             lbl_bebidas.setText("Fanta laranja");
+        } else{
+            valorTotal -= 4;
+            tf_total.setText(String.valueOf(valorTotal));
+            lbl_bebidas.setText(String.valueOf(bebidas));
+            
         }
     }//GEN-LAST:event_check_fantaActionPerformed
 
     private void check_tomateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_tomateActionPerformed
-        if(check_tomate.isSelected()){
-            salada.add("Tomate");            
+        if (check_tomate.isSelected()) {
+            salada.add("Tomate");
             lbl_saladas.setText(String.valueOf(salada));
-            
+        }else{
+            salada.remove("Tomate");
+            lbl_saladas.setText(String.valueOf(salada));
         }
     }//GEN-LAST:event_check_tomateActionPerformed
+
+    private void check_pepinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_pepinoActionPerformed
+        if (check_pepino.isSelected()) {
+            salada.add("Pepino");
+            lbl_saladas.setText(String.valueOf(salada));
+        }else{
+            salada.remove("Pepino");
+            lbl_saladas.setText(String.valueOf(salada));
+        }
+    }//GEN-LAST:event_check_pepinoActionPerformed
+
+    private void check_maioneseCaseiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_maioneseCaseiraActionPerformed
+        if (check_maioneseCaseira.isSelected()) {
+            molho.add("Maionese Caseira");
+            lbl_molhos.setText(String.valueOf(molho));
+        }
+        else{
+            molho.remove("Maionese Caseira");
+            lbl_molhos.setText(String.valueOf(molho));
+        }
+    }//GEN-LAST:event_check_maioneseCaseiraActionPerformed
+
+    private void check_barbecueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_barbecueActionPerformed
+        if (check_barbecue.isSelected()) {
+            molho.add("Barbecue");
+            lbl_molhos.setText(String.valueOf(molho));
+        } else{
+            molho.remove("Barbecue");
+            lbl_molhos.setText(String.valueOf(molho));
+        }
+    }//GEN-LAST:event_check_barbecueActionPerformed
+
+    private void check_cebolaAgridoceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_cebolaAgridoceActionPerformed
+        if (check_cebolaAgridoce.isSelected()) {
+            molho.add("Cebola Agridoce");
+            lbl_molhos.setText(String.valueOf(molho));
+        }else{
+            molho.remove("Cebola Agridoce");
+            lbl_molhos.setText(String.valueOf(molho));
+        }
+    }//GEN-LAST:event_check_cebolaAgridoceActionPerformed
+
+    private void check_baconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_baconActionPerformed
+        if (check_bacon.isSelected()) {
+            valorTotal += 12;
+            tf_total.setText(String.valueOf(valorTotal));
+            adicional.add("Bacon");
+            lbl_adicionais.setText(String.valueOf(adicional));
+        }else{
+            valorTotal -= 12;
+            tf_total.setText(String.valueOf(valorTotal));
+            adicional.remove("Bacon");
+            lbl_adicionais.setText(String.valueOf(adicional));
+            
+        }
+    }//GEN-LAST:event_check_baconActionPerformed
+
+    private void check_creamCheeseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_creamCheeseActionPerformed
+        if (check_creamCheese.isSelected()) {
+            valorTotal += 8;
+            tf_total.setText(String.valueOf(valorTotal));
+            adicional.add("Cream cheese");
+            lbl_adicionais.setText(String.valueOf(adicional));
+        }else{
+            valorTotal -= 8;
+            tf_total.setText(String.valueOf(valorTotal));
+            adicional.remove("Cream cheese");
+            lbl_adicionais.setText(String.valueOf(adicional));
+            
+        }
+    }//GEN-LAST:event_check_creamCheeseActionPerformed
+
+
+
+    private void check_peperoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_peperoneActionPerformed
+        if (check_peperone.isSelected()) {
+            valorTotal += 7;
+            tf_total.setText(String.valueOf(valorTotal));
+            adicional.add("Peperone");
+            lbl_adicionais.setText(String.valueOf(adicional));
+        }else{
+            valorTotal -= 7;
+            tf_total.setText(String.valueOf(valorTotal));
+            adicional.remove("Peperone");
+            lbl_adicionais.setText(String.valueOf(adicional));
+            
+        }
+
+    }//GEN-LAST:event_check_peperoneActionPerformed
+
+    private void tf_recebidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_recebidoActionPerformed
+        
+        
+    }//GEN-LAST:event_tf_recebidoActionPerformed
+
+    private void btn_confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirmarActionPerformed
+                Troco = Double.parseDouble(tf_total.getText()) - Double.parseDouble(tf_recebido.getText());
+                tf_troco.setText(String.valueOf(Troco));
+            
+            
+        
+    }//GEN-LAST:event_btn_confirmarActionPerformed
+
+    private void tf_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_totalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_totalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1019,7 +1191,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton btn_carneSupreme;
     private javax.swing.JRadioButton btn_cheddar;
     private javax.swing.JRadioButton btn_churrasco15;
-    private javax.swing.JRadioButton btn_dia;
+    private javax.swing.JButton btn_confirmar;
     private javax.swing.JRadioButton btn_frangoEmpanado;
     private javax.swing.JRadioButton btn_frangoTeriak;
     private javax.swing.JRadioButton btn_gorgonzola;
@@ -1036,22 +1208,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupPao;
     private javax.swing.ButtonGroup buttonGroupQueijo;
     private javax.swing.JCheckBox check_alface;
-    private javax.swing.JCheckBox check_azeitona;
     private javax.swing.JCheckBox check_bacon;
     private javax.swing.JCheckBox check_barbecue;
     private javax.swing.JCheckBox check_cebolaAgridoce;
-    private javax.swing.JCheckBox check_cebolaRoxa;
-    private javax.swing.JCheckBox check_chipotle;
     private javax.swing.JRadioButton check_coca;
     private javax.swing.JCheckBox check_creamCheese;
     private javax.swing.JRadioButton check_fanta;
     private javax.swing.JRadioButton check_guarana;
     private javax.swing.JCheckBox check_maioneseCaseira;
-    private javax.swing.JCheckBox check_mostardaMel;
     private javax.swing.JCheckBox check_peperone;
     private javax.swing.JCheckBox check_pepino;
-    private javax.swing.JCheckBox check_pimentao;
-    private javax.swing.JCheckBox check_supreme;
     private javax.swing.JCheckBox check_tomate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1076,13 +1242,19 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lbl_adicionais;
+    private javax.swing.JLabel lbl_adicionais1;
     private javax.swing.JLabel lbl_bebidas;
-    private javax.swing.JLabel lbl_dia;
+    private javax.swing.JLabel lbl_bebidas1;
     private javax.swing.JLabel lbl_lanche;
+    private javax.swing.JLabel lbl_lanche1;
     private javax.swing.JLabel lbl_molhos;
+    private javax.swing.JLabel lbl_molhos1;
     private javax.swing.JLabel lbl_pao;
+    private javax.swing.JLabel lbl_pao1;
     private javax.swing.JLabel lbl_queijo;
+    private javax.swing.JLabel lbl_queijo1;
     private javax.swing.JLabel lbl_saladas;
+    private javax.swing.JLabel lbl_saladas1;
     private javax.swing.JTextField tf_recebido;
     private javax.swing.JTextField tf_total;
     private javax.swing.JTextField tf_troco;

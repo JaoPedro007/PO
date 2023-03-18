@@ -50,10 +50,11 @@ public class Calculadora extends javax.swing.JFrame {
         btn_multiplicacao = new javax.swing.JButton();
         btn_subtracao = new javax.swing.JButton();
         btn_soma = new javax.swing.JButton();
+        jtf_visor1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jtf_visor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +63,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_7.setText("7");
-        btn_7.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_7ActionPerformed(evt);
@@ -70,7 +71,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_9.setText("9");
-        btn_9.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_9ActionPerformed(evt);
@@ -78,7 +79,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_8.setText("8");
-        btn_8.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_8ActionPerformed(evt);
@@ -86,7 +87,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_4.setText("4");
-        btn_4.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_4ActionPerformed(evt);
@@ -94,7 +95,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_6.setText("6");
-        btn_6.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_6ActionPerformed(evt);
@@ -102,7 +103,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_5.setText("5");
-        btn_5.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_5ActionPerformed(evt);
@@ -110,7 +111,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_1.setText("1");
-        btn_1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_1ActionPerformed(evt);
@@ -118,7 +119,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_3.setText("3");
-        btn_3.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_3ActionPerformed(evt);
@@ -126,7 +127,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_2.setText("2");
-        btn_2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_2ActionPerformed(evt);
@@ -134,7 +135,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_0.setText("0");
-        btn_0.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_0.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_0ActionPerformed(evt);
@@ -142,7 +143,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_virgula.setText(",");
-        btn_virgula.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_virgula.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_virgula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_virgulaActionPerformed(evt);
@@ -150,7 +151,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_igual.setText("=");
-        btn_igual.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_igual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_igual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_igualActionPerformed(evt);
@@ -158,7 +159,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_c.setText("C");
-        btn_c.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_c.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_c.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cActionPerformed(evt);
@@ -166,7 +167,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_ce.setText("CE");
-        btn_ce.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_ce.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_ce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ceActionPerformed(evt);
@@ -174,7 +175,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_divisao.setText("/");
-        btn_divisao.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_divisao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_divisao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_divisaoActionPerformed(evt);
@@ -182,7 +183,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_multiplicacao.setText("*");
-        btn_multiplicacao.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_multiplicacao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_multiplicacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_multiplicacaoActionPerformed(evt);
@@ -190,7 +191,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_subtracao.setText("-");
-        btn_subtracao.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_subtracao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_subtracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_subtracaoActionPerformed(evt);
@@ -198,7 +199,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         btn_soma.setText("+");
-        btn_soma.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btn_soma.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_soma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_somaActionPerformed(evt);
@@ -301,21 +302,31 @@ public class Calculadora extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
+        jtf_visor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_visor1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtf_visor1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
+                .addComponent(jtf_visor1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -419,6 +430,10 @@ public class Calculadora extends javax.swing.JFrame {
         sinal = "dividir";
     }//GEN-LAST:event_btn_divisaoActionPerformed
 
+    private void jtf_visor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_visor1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_visor1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -475,5 +490,6 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton btn_virgula;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jtf_visor;
+    private javax.swing.JTextField jtf_visor1;
     // End of variables declaration//GEN-END:variables
 }

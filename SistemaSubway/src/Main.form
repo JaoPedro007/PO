@@ -103,108 +103,148 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel7" max="32767" attributes="0"/>
                           <Component id="jPanel6" max="32767" attributes="0"/>
-                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jPanel8" max="32767" attributes="0"/>
                           <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="27" max="32767" attributes="0"/>
-                                      <Component id="tf_recebido" min="-2" pref="224" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="tf_total" min="-2" pref="224" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="tf_troco" min="-2" pref="224" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbl_saladas" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_pao" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_lanche" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_molhos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_adicionais" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_bebidas" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_queijo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_pao1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_lanche1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_adicionais1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_bebidas1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_queijo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_molhos1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbl_pao" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_queijo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_lanche" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_adicionais" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_molhos" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_bebidas" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbl_saladas1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lbl_saladas" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="tf_total" min="-2" pref="224" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="btn_confirmar" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tf_troco" min="-2" pref="224" max="-2" attributes="0"/>
+                                      <Component id="tf_recebido" min="-2" pref="224" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_lanche1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_lanche" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_pao1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_pao" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_queijo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_queijo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_saladas1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_saladas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_molhos1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_molhos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_adicionais1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_adicionais" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_bebidas1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_bebidas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="tf_total" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="tf_recebido" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="tf_troco" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btn_confirmar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="lbl_lanche" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lbl_pao" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lbl_queijo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="lbl_saladas" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lbl_molhos" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lbl_adicionais" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lbl_bebidas" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          <Component id="jPanel9" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel9" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tf_total" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tf_recebido" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tf_troco" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -410,23 +450,20 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="check_alface" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_tomate" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_pepino" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="check_alface" min="-2" max="-2" attributes="0"/>
+                                      <Component id="check_tomate" min="-2" max="-2" attributes="0"/>
+                                      <Component id="check_pepino" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="check_cebolaRoxa" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_azeitona" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_pimentao" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -437,20 +474,11 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="check_alface" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_cebolaRoxa" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="check_alface" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="check_tomate" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_azeitona" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="check_tomate" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="check_pepino" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_pimentao" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="check_pepino" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="51" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -494,30 +522,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Pepino"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="check_cebolaRoxa">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Swis721 Ex BT" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Cebola Roxa"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="check_azeitona">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Swis721 Ex BT" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Azeitona"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="check_pimentao">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Swis721 Ex BT" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Piment&#xe3;o"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_pepinoActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -526,25 +533,22 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="check_barbecue" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_maioneseCaseira" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_cebolaAgridoce" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="check_barbecue" min="-2" max="-2" attributes="0"/>
+                                      <Component id="check_maioneseCaseira" min="-2" max="-2" attributes="0"/>
+                                      <Component id="check_cebolaAgridoce" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="49" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="check_supreme" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_mostardaMel" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_chipotle" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -554,21 +558,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="check_maioneseCaseira" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_mostardaMel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="check_maioneseCaseira" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="check_barbecue" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_supreme" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="check_barbecue" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="check_cebolaAgridoce" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_chipotle" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="check_cebolaAgridoce" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="54" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -589,6 +584,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Maionese Caseira"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_maioneseCaseiraActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="check_barbecue">
                   <Properties>
@@ -597,6 +595,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Barbecue"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_barbecueActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="check_cebolaAgridoce">
                   <Properties>
@@ -605,30 +606,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cebola Agridoce"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="check_mostardaMel">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Swis721 Ex BT" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Mostarda e Mel"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="check_supreme">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Swis721 Ex BT" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Supreme"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="check_chipotle">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Swis721 Ex BT" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Chipotle"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_cebolaAgridoceActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -684,6 +664,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Bacon R$ 12,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_baconActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="check_creamCheese">
                   <Properties>
@@ -692,6 +675,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cream Cheese R$ 8,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_creamCheeseActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="check_peperone">
                   <Properties>
@@ -700,6 +686,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Peperone R$ 7,00"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_peperoneActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -738,7 +727,7 @@
                           <Component id="check_guarana" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="check_fanta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -806,11 +795,6 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="btn_dia" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="lbl_dia" min="-2" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="btn_churrasco15" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="btn_frangoEmpanado" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="btn_frangoTeriak" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -836,12 +820,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="8" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btn_dia" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_dia" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace pref="43" max="32767" attributes="0"/>
                           <Component id="btn_churrasco15" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btn_frangoEmpanado" min="-2" max="-2" attributes="0"/>
@@ -865,20 +844,6 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JRadioButton" name="btn_dia">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroupLanche"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Swis721 Ex BT" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Do dia"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_diaActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JRadioButton" name="btn_churrasco15">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -1005,11 +970,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_vegetarianoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbl_dia">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="dia"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1022,43 +982,60 @@
             </Container>
             <Component class="javax.swing.JLabel" name="lbl_pao">
               <Properties>
-                <Property name="text" type="java.lang.String" value="pao"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 BT" size="12" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_lanche">
               <Properties>
-                <Property name="text" type="java.lang.String" value="lanche"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 BT" size="12" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_saladas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="saladas"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 BT" size="12" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_queijo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="queijo"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 BT" size="12" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_molhos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="molhos"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 BT" size="12" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_adicionais">
               <Properties>
-                <Property name="text" type="java.lang.String" value="adicionais"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 BT" size="12" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_bebidas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="bebidas"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 BT" size="12" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tf_total">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_totalActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
@@ -1069,6 +1046,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tf_recebido">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_recebidoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -1090,6 +1070,73 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="TROCO"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_lanche1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Lanche: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_pao1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="P&#xe3;o:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_queijo1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Queijo: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_saladas1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Saladas: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_molhos1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Molhos: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_adicionais1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Adiconais: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_bebidas1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Bebidas"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btn_confirmar">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Swis721 Ex BT" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Confirmar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_confirmarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
