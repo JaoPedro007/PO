@@ -1,7 +1,7 @@
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.RandomAccess;
+import java.util.RandomAccess; 
 import javax.swing.JOptionPane;
 
 
@@ -322,6 +322,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_gravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gravarActionPerformed
+        
         String conta = "Dados da conta" 
                 + "\r\n Nome do cliente: " + tf_nome.getText() 
                 + "\r\n Sexo: " + buttonGroup1.getSelection().getActionCommand()
@@ -341,7 +342,7 @@ public class Main extends javax.swing.JFrame {
             RandomAccessFile raf = new RandomAccessFile("C:\\Copel\\ContaEnergia.txt", "rw");
             raf.write(buff);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Erro ao gravar o arquivo", "Atenção", JOptionPane.ERROR_MESSAGE);
 
         }
 
