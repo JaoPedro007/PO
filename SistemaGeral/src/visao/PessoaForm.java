@@ -33,34 +33,37 @@ private List<Pessoa> pessoas;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txf_Descricao = new javax.swing.JTextField();
+        tf_nome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txf_Cep = new javax.swing.JTextField();
+        tf_endereco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txf_bairro = new javax.swing.JTextField();
+        tf_bairro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txf_numero = new javax.swing.JTextField();
+        tf_numero = new javax.swing.JTextField();
         btn_cadastrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        txt_Pesquisa = new javax.swing.JTextField();
-        btn_Pesquisar = new javax.swing.JButton();
-        btn_Excluir = new javax.swing.JButton();
+        tf_pesquisar = new javax.swing.JTextField();
+        btn_pesquisar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
+        btn_alterar = new javax.swing.JButton();
+        btn_salvar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Descrição");
+        jLabel1.setText("Nome");
 
-        jLabel2.setText("CEP");
+        jLabel2.setText("Endereço");
 
         jLabel3.setText("Bairro");
 
-        jLabel4.setText("número");
+        jLabel4.setText("Número");
 
-        txf_numero.addActionListener(new java.awt.event.ActionListener() {
+        tf_numero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txf_numeroActionPerformed(evt);
+                tf_numeroActionPerformed(evt);
             }
         });
 
@@ -83,58 +86,75 @@ private List<Pessoa> pessoas;
 
         jLabel5.setText("Texto");
 
-        btn_Pesquisar.setText("Pesquisar");
-        btn_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+        btn_pesquisar.setText("Pesquisar");
+        btn_pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_PesquisarActionPerformed(evt);
+                btn_pesquisarActionPerformed(evt);
             }
         });
 
-        btn_Excluir.setText("Excluir");
-        btn_Excluir.addActionListener(new java.awt.event.ActionListener() {
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ExcluirActionPerformed(evt);
+                btn_excluirActionPerformed(evt);
             }
         });
+
+        btn_alterar.setText("Alterar");
+        btn_alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alterarActionPerformed(evt);
+            }
+        });
+
+        btn_salvar.setText("Salvar");
+
+        btn_cancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_Pesquisar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_cadastrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Excluir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txf_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_cadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_alterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancelar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tf_numero, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(24, 24, 24)
+                            .addComponent(tf_bairro))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txf_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txf_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tf_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                .addComponent(tf_endereco))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txf_Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(tf_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_pesquisar)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,30 +162,33 @@ private List<Pessoa> pessoas;
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txf_Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txf_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txf_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txf_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Pesquisar))
+                    .addComponent(tf_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_pesquisar))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cadastrar)
-                    .addComponent(btn_Excluir))
+                    .addComponent(btn_excluir)
+                    .addComponent(btn_alterar)
+                    .addComponent(btn_salvar)
+                    .addComponent(btn_cancelar))
                 .addContainerGap())
         );
 
@@ -174,9 +197,9 @@ private List<Pessoa> pessoas;
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
        
-        String descricao=txf_Descricao.getText();
-        String cep=txf_Cep.getText();
-        String bairro=txf_bairro.getText();
+        String descricao=tf_nome.getText();
+        String cep=tf_endereco.getText();
+        String bairro=tf_bairro.getText();
         int numero=0;
         int codigo=0;
         float total=0;
@@ -184,7 +207,7 @@ private List<Pessoa> pessoas;
        
         
         try {
-            numero=Integer.parseInt(txf_numero.getText());
+            numero=Integer.parseInt(tf_numero.getText());
             
             
         } catch (NumberFormatException e) {
@@ -215,10 +238,10 @@ private List<Pessoa> pessoas;
         try {
             pessoaDao.adicionar(pessoa);
             JOptionPane.showMessageDialog(null, "Pessoa cadastrada");
-            txf_Descricao.setText("");
-            txf_Cep.setText("");
-            txf_bairro.setText("");
-            txf_numero.setText("");
+            tf_nome.setText("");
+            tf_endereco.setText("");
+            tf_bairro.setText("");
+            tf_numero.setText("");
             
             
             
@@ -233,15 +256,15 @@ private List<Pessoa> pessoas;
         
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
-    private void txf_numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_numeroActionPerformed
+    private void tf_numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_numeroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txf_numeroActionPerformed
+    }//GEN-LAST:event_tf_numeroActionPerformed
 
-    private void btn_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PesquisarActionPerformed
+    private void btn_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarActionPerformed
         atualizarTabela();        
-    }//GEN-LAST:event_btn_PesquisarActionPerformed
+    }//GEN-LAST:event_btn_pesquisarActionPerformed
 
-    private void btn_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExcluirActionPerformed
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
     int linha =tabela.getSelectedRow();
     if(linha<0){
         JOptionPane.showMessageDialog(null, "Selecione uma pessoa","Atenção", JOptionPane.WARNING_MESSAGE);
@@ -260,11 +283,15 @@ private List<Pessoa> pessoas;
         
         
         
-    }//GEN-LAST:event_btn_ExcluirActionPerformed
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void btn_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_alterarActionPerformed
 
     private void atualizarTabela() {
         try {
-            pessoas = pessoaDao.buscarPelaDescricao(txt_Pesquisa.getText());
+            pessoas = pessoaDao.buscarPelaDescricao(tf_pesquisar.getText());
 
             DefaultTableModel model = (DefaultTableModel) tabela.getModel();
             model.setNumRows(0);
@@ -318,9 +345,12 @@ private List<Pessoa> pessoas;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Excluir;
-    private javax.swing.JButton btn_Pesquisar;
+    private javax.swing.JButton btn_alterar;
     private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_pesquisar;
+    private javax.swing.JButton btn_salvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -328,10 +358,10 @@ private List<Pessoa> pessoas;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
-    private javax.swing.JTextField txf_Cep;
-    private javax.swing.JTextField txf_Descricao;
-    private javax.swing.JTextField txf_bairro;
-    private javax.swing.JTextField txf_numero;
-    private javax.swing.JTextField txt_Pesquisa;
+    private javax.swing.JTextField tf_bairro;
+    private javax.swing.JTextField tf_endereco;
+    private javax.swing.JTextField tf_nome;
+    private javax.swing.JTextField tf_numero;
+    private javax.swing.JTextField tf_pesquisar;
     // End of variables declaration//GEN-END:variables
 }

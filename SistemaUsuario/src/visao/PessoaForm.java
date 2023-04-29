@@ -287,14 +287,13 @@ public class PessoaForm extends javax.swing.JFrame {
             return;
         }
         
-        Pessoa pessoa = new Pessoa(descricao, cep, bairro, numero, codigo);
+        Pessoa pessoa = new Pessoa(endereco, cep, bairro, numero, codigo);
         
         try {
             pessoaDao.adicionar(pessoa);
             JOptionPane.showMessageDialog(null, "Pessoa cadastrado com sucesso");
             tf_nome.setText("");
             tf_endereco.setText("");
-            tf_sexo.setText("");
             tf_cep.setText("");
             
        } catch (SQLException ex) {
