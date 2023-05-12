@@ -1,28 +1,21 @@
-package view;
-
-import java.awt.event.ActionListener;
-import javax.swing.JMenuItem;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
+package view;
 
 /**
  *
  * @author João Pedro
  */
-public class ClienteFornecedor extends javax.swing.JFrame {
+public class ClienteFornecedor extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Principal
+     * Creates new form ClienteFornecedores
      */
     public ClienteFornecedor() {
         initComponents();
-        
     }
-    
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,46 +26,46 @@ public class ClienteFornecedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        tfBuscar = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        btnBuscar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        tf_nome = new javax.swing.JTextField();
-        tf_cpfCnpj = new javax.swing.JTextField();
+        btnTipo = new javax.swing.ButtonGroup();
+        jButton5 = new javax.swing.JButton();
         tf_telefone = new javax.swing.JTextField();
+        btn_cliente = new javax.swing.JRadioButton();
         tf_endereco = new javax.swing.JTextField();
+        btn_fornecedor = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        tfBuscar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        tf_nome = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        btn_cliente = new javax.swing.JRadioButton();
-        btn_fornecedor = new javax.swing.JRadioButton();
+        tf_cpfCnpj = new javax.swing.JTextField();
 
-        jMenuItem1.setText("jMenuItem1");
+        jButton5.setText("Cancelar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        btnTipo.add(btn_cliente);
+        btn_cliente.setText("Cliente");
+        btn_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clienteActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btnTipo.add(btn_fornecedor);
+        btn_fornecedor.setText("Fornecedor");
+
+        jLabel2.setText("Nome");
+
+        jLabel3.setText("CPF/CNPJ");
+
+        jLabel4.setText("Telefone");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,44 +80,27 @@ public class ClienteFornecedor extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        btnBuscar.setText("Buscar");
-
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        jLabel1.setText("Clientes/Fornecedores");
-
-        jLabel2.setText("Nome");
-
-        jLabel3.setText("CPF/CNPJ");
-
-        jLabel4.setText("Telefone");
-
         jLabel5.setText("Endereço");
 
         jButton1.setText("Cadastrar");
 
+        btnBuscar.setText("Buscar");
+
         jButton2.setText("Excluir");
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel1.setText("Clientes/Fornecedores");
 
         jButton3.setText("Alterar");
 
         jButton4.setText("Salvar");
-
-        jButton5.setText("Cancelar");
-
-        btn_cliente.setText("Cliente");
-        btn_cliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_clienteActionPerformed(evt);
-            }
-        });
-
-        btn_fornecedor.setText("Fornecedor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -194,7 +170,7 @@ public class ClienteFornecedor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cliente)
                     .addComponent(btn_fornecedor))
@@ -222,50 +198,9 @@ public class ClienteFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
 
-     
-
-  
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClienteFornecedor().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.ButtonGroup btnTipo;
     private javax.swing.JRadioButton btn_cliente;
     private javax.swing.JRadioButton btn_fornecedor;
     private javax.swing.JButton jButton1;
@@ -278,10 +213,7 @@ public class ClienteFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField tfBuscar;
     private javax.swing.JTextField tf_cpfCnpj;
@@ -289,8 +221,4 @@ public class ClienteFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nome;
     private javax.swing.JTextField tf_telefone;
     // End of variables declaration//GEN-END:variables
-
-    void addActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

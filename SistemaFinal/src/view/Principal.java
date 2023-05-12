@@ -1,7 +1,12 @@
 package view;
 
+import java.awt.Desktop;
+import java.awt.Frame;
 import java.awt.event.ActionListener;
 import javax.crypto.AEADBadTagException;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,15 +16,21 @@ import javax.crypto.AEADBadTagException;
  *
  * @author João Pedro
  */
-public class Principal extends javax.swing.JFrame {
+public class Principal extends JFrame {
+    private JDesktopPane desktopPane;
 
-
+    
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-    }
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        desktopPane = new JDesktopPane();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(desktopPane);
+        
+   }
     
     
     /**
@@ -33,11 +44,17 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jPanel1 = new javax.swing.JPanel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuConfiguracoes = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuConfigurações = new javax.swing.JMenuItem();
+        menuFerramentas = new javax.swing.JMenu();
         menuCadastrarEditar = new javax.swing.JMenu();
         menuProduto = new javax.swing.JMenuItem();
         menuCliente = new javax.swing.JMenuItem();
@@ -47,39 +64,51 @@ public class Principal extends javax.swing.JFrame {
         menuReativar = new javax.swing.JMenu();
         menuNFE = new javax.swing.JMenu();
         menuNota = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        menuAjuda = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem3.setText("jMenuItem3");
 
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu3.setText("Edit");
+        jMenuBar2.add(jMenu3);
+
+        jMenu5.setText("File");
+        jMenuBar3.add(jMenu5);
+
+        jMenu6.setText("Edit");
+        jMenuBar3.add(jMenu6);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 683, Short.MAX_VALUE)
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 736, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 622, Short.MAX_VALUE)
         );
 
         menuConfiguracoes.setText("Arquivo");
 
-        jMenuItem2.setText("Configurações");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuConfigurações.setText("Configurações");
+        menuConfigurações.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuConfiguraçõesActionPerformed(evt);
             }
         });
-        menuConfiguracoes.add(jMenuItem2);
+        menuConfiguracoes.add(menuConfigurações);
 
         jMenuBar1.add(menuConfiguracoes);
 
-        jMenu2.setText("Ferramentas");
+        menuFerramentas.setText("Ferramentas");
 
         menuCadastrarEditar.setText("Cadastrar/Editar");
 
@@ -123,12 +152,12 @@ public class Principal extends javax.swing.JFrame {
         });
         menuCadastrarEditar.add(menuMarcas);
 
-        jMenu2.add(menuCadastrarEditar);
+        menuFerramentas.add(menuCadastrarEditar);
 
         menuReativar.setText("Reativar");
-        jMenu2.add(menuReativar);
+        menuFerramentas.add(menuReativar);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(menuFerramentas);
 
         menuNFE.setText("Vendas");
 
@@ -142,12 +171,12 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuNFE);
 
-        jMenu4.setText("Ajuda");
+        menuAjuda.setText("Ajuda");
 
         menuSobre.setText("Sobre");
-        jMenu4.add(menuSobre);
+        menuAjuda.add(menuSobre);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(menuAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -155,11 +184,16 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jDesktopPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -169,39 +203,53 @@ public class Principal extends javax.swing.JFrame {
     
     
     
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuConfiguraçõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConfiguraçõesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menuConfiguraçõesActionPerformed
 
     private void menuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProdutoActionPerformed
         Produto produto = new Produto();
         produto.setVisible(true);
+        desktopPane.add(produto);
+        produto.setClosable(true);
+
 
     }//GEN-LAST:event_menuProdutoActionPerformed
 
     private void menuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClienteActionPerformed
         ClienteFornecedor clientefornecedor = new ClienteFornecedor();
         clientefornecedor.setVisible(true);
+        desktopPane.add(clientefornecedor);
+        clientefornecedor.setClosable(true);
     }//GEN-LAST:event_menuClienteActionPerformed
 
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         Usuario usuario = new Usuario();
         usuario.setVisible(true);
+        desktopPane.add(usuario);
+        usuario.setClosable(true);
     }//GEN-LAST:event_menuUsuarioActionPerformed
 
     private void menuDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDepartamentoActionPerformed
         Departamento departamento = new Departamento();
         departamento.setVisible(true);
+        desktopPane.add(departamento);
+        departamento.setClosable(true);
+
     }//GEN-LAST:event_menuDepartamentoActionPerformed
 
     private void menuMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMarcasActionPerformed
         Marca marca = new Marca();
         marca.setVisible(true);
+        desktopPane.add(marca);
+        marca.setClosable(true);
     }//GEN-LAST:event_menuMarcasActionPerformed
 
     private void menuNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNotaActionPerformed
         Venda venda = new Venda();
         venda.setVisible(true);
+        desktopPane.add(venda);
+        venda.setClosable(true);
     }//GEN-LAST:event_menuNotaActionPerformed
 
     /**
@@ -240,17 +288,23 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuCadastrarEditar;
     private javax.swing.JMenuItem menuCliente;
     private javax.swing.JMenu menuConfiguracoes;
+    private javax.swing.JMenuItem menuConfigurações;
     private javax.swing.JMenuItem menuDepartamento;
+    private javax.swing.JMenu menuFerramentas;
     private javax.swing.JMenuItem menuMarcas;
     private javax.swing.JMenu menuNFE;
     private javax.swing.JMenuItem menuNota;
