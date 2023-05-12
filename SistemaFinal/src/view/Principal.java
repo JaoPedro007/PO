@@ -1,17 +1,18 @@
 package view;
 
 import java.awt.event.ActionListener;
+import javax.crypto.AEADBadTagException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-/**
+ /**
  *
  * @author João Pedro
  */
 public class Principal extends javax.swing.JFrame {
+
 
     /**
      * Creates new form Principal
@@ -34,22 +35,20 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuConfiguracoes = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        menuCadastrarEditar = new javax.swing.JMenu();
         menuProduto = new javax.swing.JMenuItem();
         menuCliente = new javax.swing.JMenuItem();
-        menuFornecedor = new javax.swing.JMenuItem();
         menuUsuario = new javax.swing.JMenuItem();
         menuDepartamento = new javax.swing.JMenuItem();
         menuMarcas = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        menuReativar = new javax.swing.JMenu();
         menuNFE = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        menuNFC = new javax.swing.JMenuItem();
+        menuNota = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        menuSobre = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -68,7 +67,7 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 397, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Arquivo");
+        menuConfiguracoes.setText("Arquivo");
 
         jMenuItem2.setText("Configurações");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -76,13 +75,13 @@ public class Principal extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        menuConfiguracoes.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuConfiguracoes);
 
         jMenu2.setText("Ferramentas");
 
-        jMenu5.setText("Cadastrar/Editar");
+        menuCadastrarEditar.setText("Cadastrar/Editar");
 
         menuProduto.setText("Produtos");
         menuProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -90,44 +89,63 @@ public class Principal extends javax.swing.JFrame {
                 menuProdutoActionPerformed(evt);
             }
         });
-        jMenu5.add(menuProduto);
+        menuCadastrarEditar.add(menuProduto);
 
-        menuCliente.setText("Clientes");
-        jMenu5.add(menuCliente);
-
-        menuFornecedor.setText("Fornecedores");
-        jMenu5.add(menuFornecedor);
+        menuCliente.setText("Clientes/Fornecedores");
+        menuCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuClienteActionPerformed(evt);
+            }
+        });
+        menuCadastrarEditar.add(menuCliente);
 
         menuUsuario.setText("Usuarios");
-        jMenu5.add(menuUsuario);
+        menuUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUsuarioActionPerformed(evt);
+            }
+        });
+        menuCadastrarEditar.add(menuUsuario);
 
         menuDepartamento.setText("Departamentos");
-        jMenu5.add(menuDepartamento);
+        menuDepartamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuDepartamentoActionPerformed(evt);
+            }
+        });
+        menuCadastrarEditar.add(menuDepartamento);
 
         menuMarcas.setText("Marcas");
-        jMenu5.add(menuMarcas);
+        menuMarcas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMarcasActionPerformed(evt);
+            }
+        });
+        menuCadastrarEditar.add(menuMarcas);
 
-        jMenu2.add(jMenu5);
+        jMenu2.add(menuCadastrarEditar);
 
-        jMenu6.setText("Reativar");
-        jMenu2.add(jMenu6);
+        menuReativar.setText("Reativar");
+        jMenu2.add(menuReativar);
 
         jMenuBar1.add(jMenu2);
 
         menuNFE.setText("Vendas");
 
-        jMenuItem9.setText("Emitir NF-e");
-        menuNFE.add(jMenuItem9);
-
-        menuNFC.setText("Emitir NFC-e");
-        menuNFE.add(menuNFC);
+        menuNota.setText("Emitir Nota");
+        menuNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNotaActionPerformed(evt);
+            }
+        });
+        menuNFE.add(menuNota);
 
         jMenuBar1.add(menuNFE);
 
         jMenu4.setText("Ajuda");
 
-        jMenuItem11.setText("Sobre");
-        jMenu4.add(jMenuItem11);
+        menuSobre.setText("Sobre");
+        jMenu4.add(menuSobre);
 
         jMenuBar1.add(jMenu4);
 
@@ -147,7 +165,7 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    Produto produto = new Produto();
+    
     
     
     
@@ -156,11 +174,35 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void menuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProdutoActionPerformed
-           if (menuProduto.isSelected()) {
-            produto.abrirTelaProdutos();
-        }
+        Produto produto = new Produto();
+        produto.setVisible(true);
 
     }//GEN-LAST:event_menuProdutoActionPerformed
+
+    private void menuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClienteActionPerformed
+        ClienteFornecedor clientefornecedor = new ClienteFornecedor();
+        clientefornecedor.setVisible(true);
+    }//GEN-LAST:event_menuClienteActionPerformed
+
+    private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
+        Usuario usuario = new Usuario();
+        usuario.setVisible(true);
+    }//GEN-LAST:event_menuUsuarioActionPerformed
+
+    private void menuDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDepartamentoActionPerformed
+        Departamento departamento = new Departamento();
+        departamento.setVisible(true);
+    }//GEN-LAST:event_menuDepartamentoActionPerformed
+
+    private void menuMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMarcasActionPerformed
+        Marca marca = new Marca();
+        marca.setVisible(true);
+    }//GEN-LAST:event_menuMarcasActionPerformed
+
+    private void menuNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNotaActionPerformed
+        Venda venda = new Venda();
+        venda.setVisible(true);
+    }//GEN-LAST:event_menuNotaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,25 +240,23 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu menuCadastrarEditar;
     private javax.swing.JMenuItem menuCliente;
+    private javax.swing.JMenu menuConfiguracoes;
     private javax.swing.JMenuItem menuDepartamento;
-    private javax.swing.JMenuItem menuFornecedor;
     private javax.swing.JMenuItem menuMarcas;
-    private javax.swing.JMenuItem menuNFC;
     private javax.swing.JMenu menuNFE;
+    private javax.swing.JMenuItem menuNota;
     private javax.swing.JMenuItem menuProduto;
+    private javax.swing.JMenu menuReativar;
+    private javax.swing.JMenuItem menuSobre;
     private javax.swing.JMenuItem menuUsuario;
     // End of variables declaration//GEN-END:variables
 }

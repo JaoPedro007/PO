@@ -14,7 +14,7 @@
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="menuConfiguracoes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Arquivo"/>
           </Properties>
@@ -34,7 +34,7 @@
             <Property name="text" type="java.lang.String" value="Ferramentas"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="jMenu5">
+            <Menu class="javax.swing.JMenu" name="menuCadastrarEditar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar/Editar"/>
               </Properties>
@@ -49,32 +49,39 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuCliente">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Clientes"/>
+                    <Property name="text" type="java.lang.String" value="Clientes/Fornecedores"/>
                   </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuFornecedor">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Fornecedores"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuClienteActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuUsuario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Usuarios"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuUsuarioActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuDepartamento">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Departamentos"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDepartamentoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuMarcas">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Marcas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuMarcasActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu6">
+            <Menu class="javax.swing.JMenu" name="menuReativar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reativar"/>
               </Properties>
@@ -86,15 +93,13 @@
             <Property name="text" type="java.lang.String" value="Vendas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+            <MenuItem class="javax.swing.JMenuItem" name="menuNota">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Emitir NF-e"/>
+                <Property name="text" type="java.lang.String" value="Emitir Nota"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuNFC">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Emitir NFC-e"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNotaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -103,7 +108,7 @@
             <Property name="text" type="java.lang.String" value="Ajuda"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
+            <MenuItem class="javax.swing.JMenuItem" name="menuSobre">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
