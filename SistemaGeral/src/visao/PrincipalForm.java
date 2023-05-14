@@ -13,28 +13,14 @@ import modelo.Usuario;
  */
 public class PrincipalForm extends javax.swing.JFrame {
 
-   private Usuario usuario;
    
      public PrincipalForm(){
         
     }
    
    
-    public PrincipalForm(Usuario usuario) {
-        
-        
-
-    }
-
   
     
-    private void controlarNiveisAcesso(){
-        if(this.usuario.getNivel().equals("operacional")){
-            this.relatorio.setVisible(false);
-            
-        }
-        
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
