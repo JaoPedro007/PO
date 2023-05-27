@@ -390,7 +390,7 @@ public class PessoaForm extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tabela.getModel();
             model.setNumRows(0);
             for (int i = 0; i < pessoas.size(); i++) {
-                Pessoa pessoa = pessoas.get(i);
+                UsuarioModelo usuariomodelo = pessoas.get(i);
                 model.addRow(new Object[]{pessoa.getDescricao(), pessoa.getCep(), pessoa.getBairro(), pessoa.getNumero(),});
             }
         } catch (SQLException ex) {

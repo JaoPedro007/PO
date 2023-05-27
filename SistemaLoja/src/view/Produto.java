@@ -76,13 +76,13 @@ public class Produto extends javax.swing.JInternalFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Codigo", "Descrição", "Estoque", "Valor Custo", "Valor Venda", "Departamento", "Marca"
+                "Codigo", "Descrição", "Estoque", "Valor Custo", "Valor Venda", "Departamento", "Marca"
             }
         ));
         jScrollPane3.setViewportView(jTable2);

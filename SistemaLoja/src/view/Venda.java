@@ -49,7 +49,7 @@ public class Venda extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Vendas");
 
-        btn_clientes.setText("Cliente");
+        btn_clientes.setText("Clientes");
 
         jButton4.setText("Salvar");
 

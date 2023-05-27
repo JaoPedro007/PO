@@ -51,7 +51,7 @@ public class Marca extends javax.swing.JInternalFrame {
                 {null, null}
             },
             new String [] {
-                "ID", "Descricão"
+                "Nome", "Descrição"
             }
         ));
         jScrollPane3.setViewportView(jTable2);
