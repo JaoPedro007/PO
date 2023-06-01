@@ -7,12 +7,22 @@ package view;
 import java.awt.Event;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.ProdutoModelo;
+import dao.VendaDao;
+import modelo.VendaModelo;
 
 /**
  *
  * @author João Pedro
  */
 public class Venda extends javax.swing.JInternalFrame {
+
+    VendaDao vendaDao = new VendaDao();
+    private List<VendaModelo> itensVenda;
 
     /**
      * Creates new form Vendas
@@ -36,7 +46,7 @@ public class Venda extends javax.swing.JInternalFrame {
         btn_produtos = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabela_produtos_venda = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tf_codigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -58,27 +68,32 @@ public class Venda extends javax.swing.JInternalFrame {
         jButton4.setText("Salvar");
 
         btn_produtos.setText("Produtos");
+        btn_produtos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_produtosActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_produtos_venda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Descricao", "Quantidade", "Valor Venda"
+                "Codigo", "Descricao", "Quantidade", "Valor Venda"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tabela_produtos_venda);
 
         jLabel1.setText("Codigo Produto");
 
-        tf_codigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_codigoActionPerformed(evt);
+        tf_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tf_codigoKeyPressed(evt);
             }
         });
 
@@ -125,11 +140,11 @@ public class Venda extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addComponent(tf_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
@@ -202,14 +217,32 @@ public class Venda extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codigoActionPerformed
-        tf_codigo.addActionListener(e -> {
-            
-            String codigoDoProduto=tf_codigo.getText();
-            
-        });
-    
-    }//GEN-LAST:event_tf_codigoActionPerformed
+    private void btn_produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_produtosActionPerformed
+
+
+    }//GEN-LAST:event_btn_produtosActionPerformed
+
+    private void tf_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_codigoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                itensVenda = vendaDao.adicionarProdutoVenda(tf_codigo.getText());
+                DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
+                model.setNumRows(0);
+                for (int i = 0; i < itensVenda.size(); i++) {
+                    VendaModelo vendaModelo = itensVenda.get(0);
+                    model.addRow(new Object[]{
+                        vendaModelo.getCodigo(),
+                        vendaModelo.getDescricao(),
+                        vendaModelo.getQuantidade(),
+                        vendaModelo.getValorVenda(),});
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possível adicionar o produto na venda", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        }
+    }//GEN-LAST:event_tf_codigoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -226,7 +259,7 @@ public class Venda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tabela_produtos_venda;
     private javax.swing.JTextField tf_codigo;
     private javax.swing.JTextField tf_cpfCnpj;
     private javax.swing.JTextField tf_nome;

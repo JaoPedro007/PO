@@ -216,7 +216,7 @@ public class Usuario extends javax.swing.JInternalFrame {
             tf_senha.setText("");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir no bd", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Usuario", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
 

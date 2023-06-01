@@ -4,12 +4,24 @@
  */
 package view;
 
+import dao.ProdutoDao;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.ProdutoModelo;
+import modelo.UsuarioModelo;
+
 /**
  *
  * @author João Pedro
  */
 public class Produto extends javax.swing.JInternalFrame {
-
+    
+    ProdutoDao produtoDao = new ProdutoDao();
+    private List<ProdutoModelo> produtos;
     /**
      * Creates new form Produtos
      */
@@ -26,55 +38,65 @@ public class Produto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_cadastrar = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btn_alterar = new javax.swing.JButton();
         tf_descricao = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        tf_estoque = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btn_salvar = new javax.swing.JButton();
+        tf_quantidade = new javax.swing.JTextField();
+        btn_cancelar = new javax.swing.JButton();
         tf_custo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         tf_venda = new javax.swing.JTextField();
         tf_codigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tfBuscar = new javax.swing.JTextField();
+        tf_buscar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabela_produto = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         tf_departamento = new javax.swing.JTextField();
         tf_marca = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         Marca = new javax.swing.JLabel();
 
-        jButton1.setText("Cadastrar");
+        btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrarActionPerformed(evt);
+            }
+        });
 
-        btnBuscar.setText("Buscar");
+        btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Excluir");
+        btn_excluir.setText("Excluir");
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel1.setText("Produtos");
 
-        jButton3.setText("Alterar");
+        btn_alterar.setText("Alterar");
 
-        jButton4.setText("Salvar");
+        btn_salvar.setText("Salvar");
 
-        jButton5.setText("Cancelar");
+        btn_cancelar.setText("Cancelar");
 
         jLabel6.setText("Codigo");
 
         jLabel2.setText("Descrição");
 
-        jLabel3.setText("Estoque");
+        jLabel3.setText("Quantidade");
 
         jLabel4.setText("Valor Custo");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_produto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -82,10 +104,10 @@ public class Produto extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Descrição", "Estoque", "Valor Custo", "Valor Venda", "Departamento", "Marca"
+                "Codigo", "Descrição", "Quantidade", "Valor Custo", "Valor Venda", "Departamento", "Marca"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tabela_produto);
 
         jLabel5.setText("Valor Venda");
 
@@ -105,21 +127,21 @@ public class Produto extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btn_cadastrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)
+                                .addComponent(btn_excluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btn_alterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)
+                                .addComponent(btn_salvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5))))
+                                .addComponent(btn_cancelar))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscar))
+                                .addComponent(btn_buscar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -136,7 +158,7 @@ public class Produto extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tf_custo, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                     .addComponent(tf_venda)
-                                    .addComponent(tf_estoque)
+                                    .addComponent(tf_quantidade)
                                     .addComponent(tf_descricao)
                                     .addComponent(tf_codigo))
                                 .addGap(90, 90, 90)
@@ -169,7 +191,7 @@ public class Produto extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tf_estoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(layout.createSequentialGroup()
@@ -187,32 +209,82 @@ public class Produto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btn_cadastrar)
+                    .addComponent(btn_excluir)
+                    .addComponent(btn_alterar)
+                    .addComponent(btn_salvar)
+                    .addComponent(btn_cancelar))
                 .addGap(9, 9, 9))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+        String descricao = tf_descricao.getText();
+        String codigo = tf_codigo.getText();
+        String quantidade = tf_quantidade.getText();
+        String valorCusto = tf_custo.getText();
+        String valorVenda = tf_venda.getText();
+        String departamento = tf_departamento.getText();
+        String marca = tf_marca.getText();
+
+
+        ProdutoModelo produto = new ProdutoModelo(descricao, codigo , quantidade, valorCusto, valorVenda, departamento, marca);
+        try {
+            produtoDao.cadastrarProduto(produto);
+            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
+        } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
+        tf_codigo.setText("");
+        tf_descricao.setText("");
+        tf_quantidade.setText("");
+        tf_custo.setText("");
+        tf_venda.setText("");
+        tf_departamento.setText("");
+        tf_marca.setText("");
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+         try {
+            produtos = produtoDao.buscarProduto(tf_buscar.getText());
+            DefaultTableModel model = (DefaultTableModel) tabela_produto.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < produtos.size(); i++) {
+                ProdutoModelo produtoModelo = produtos.get(i);
+                model.addRow(new Object[]{
+                produtoModelo.getDescricao(),
+                produtoModelo.getCodigo(),
+                produtoModelo.getQuantidade(),
+                produtoModelo.getValorCusto(),
+                produtoModelo.getValorVenda(),
+                produtoModelo.getDepartamento(),
+                produtoModelo.getMarca()
+                });
+            }
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Não foi possível localizar os produtos", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Marca;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btn_alterar;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_salvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -221,14 +293,14 @@ public class Produto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField tfBuscar;
+    private javax.swing.JTable tabela_produto;
+    private javax.swing.JTextField tf_buscar;
     private javax.swing.JTextField tf_codigo;
     private javax.swing.JTextField tf_custo;
     private javax.swing.JTextField tf_departamento;
     private javax.swing.JTextField tf_descricao;
-    private javax.swing.JTextField tf_estoque;
     private javax.swing.JTextField tf_marca;
+    private javax.swing.JTextField tf_quantidade;
     private javax.swing.JTextField tf_venda;
     // End of variables declaration//GEN-END:variables
 }
