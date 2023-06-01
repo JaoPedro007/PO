@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.awt.Event;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author João Pedro
@@ -71,6 +75,12 @@ public class Venda extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(jTable2);
 
         jLabel1.setText("Codigo Produto");
+
+        tf_codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codigoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Produtos");
@@ -191,6 +201,15 @@ public class Venda extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tf_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codigoActionPerformed
+        tf_codigo.addActionListener(e -> {
+            
+            String codigoDoProduto=tf_codigo.getText();
+            
+        });
+    
+    }//GEN-LAST:event_tf_codigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

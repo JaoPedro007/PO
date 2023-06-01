@@ -16,8 +16,10 @@ import modelo.UsuarioModelo;
  * @author João Pedro
  */
 public class Usuario extends javax.swing.JInternalFrame {
-     private UsuarioDao usuariodao = new UsuarioDao();
-     private List<UsuarioModelo> usuarios;
+
+    private UsuarioDao usuariodao = new UsuarioDao();
+    private List<UsuarioModelo> usuarios;
+    private UsuarioModelo usuarioSelecionado;
 
     /**
      * Creates new form Usuarios
@@ -38,7 +40,7 @@ public class Usuario extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_cadastrar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -65,7 +67,12 @@ public class Usuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Excluir");
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Alterar");
 
@@ -75,13 +82,13 @@ public class Usuario extends javax.swing.JInternalFrame {
 
         tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome", "Login", "Senha"
+                "Nome", "Login", "Senha", "Cargo"
             }
         ));
         jScrollPane3.setViewportView(tabelaUsuario);
@@ -121,7 +128,7 @@ public class Usuario extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btn_cadastrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)
+                                .addComponent(btn_excluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -184,7 +191,7 @@ public class Usuario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cadastrar)
-                    .addComponent(jButton2)
+                    .addComponent(btn_excluir)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
@@ -195,34 +202,33 @@ public class Usuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
-       String nome = tf_nome.getText();
-       String login = tf_login.getText();
-       String senha = tf_senha.getText();
-       String cargo = this.cargo.getSelectedItem().toString();
-        
+        String nome = tf_nome.getText();
+        String login = tf_login.getText();
+        String senha = tf_senha.getText();
+        String cargo = this.cargo.getSelectedItem().toString();
+     
         UsuarioModelo usuario = new UsuarioModelo(nome, login, senha, cargo);
-         try {
-             usuariodao.cadastrarUsuario(usuario);
-                JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso");
-                tf_nome.setText("");
-                tf_login.setText("");
-                tf_senha.setText("");
-                
+        try {
+            usuariodao.cadastrarUsuario(usuario);
+            JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso");
+            tf_nome.setText("");
+            tf_login.setText("");
+            tf_senha.setText("");
 
-         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Erro ao inserir no bd", "Erro", JOptionPane.ERROR_MESSAGE);
-         }
-        
-    
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir no bd", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     private void cargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargoActionPerformed
-           
+
     }//GEN-LAST:event_cargoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-            try {
-                
+        try {
+
             usuarios = usuariodao.buscarUsuario(tfBuscar.getText());
             DefaultTableModel model = (DefaultTableModel) tabelaUsuario.getModel();
             model.setNumRows(0);
@@ -235,12 +241,29 @@ public class Usuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+
+        int linha = tabelaUsuario.getSelectedRow();
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um usuário", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        usuarioSelecionado = usuarios.get(linha);
+        try {
+            usuariodao.excluirUsuario(usuarioSelecionado.getId());
+            JOptionPane.showMessageDialog(null, "Pessoa excluída");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_excluir;
     private javax.swing.JComboBox<String> cargo;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

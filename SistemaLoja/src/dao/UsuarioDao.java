@@ -34,6 +34,19 @@ public class UsuarioDao {
         
     }
     
+    public void excluirUsuario(int id) throws SQLException{
+        Connection conexao = new Conexao().getConexao();
+        String sql="DELETE FROM usuario where id= ?";
+        PreparedStatement ps = conexao.prepareStatement(sql);
+        ps.setInt(1, id);
+        
+        ps.executeUpdate();
+        ps.close();
+        conexao.close();
+    }
+    
+ 
+    
     public List<UsuarioModelo> buscarUsuario(String login) throws SQLException{
         Connection conexao = new Conexao().getConexao();
         String sql = "Select * from usuario where login like ?";
