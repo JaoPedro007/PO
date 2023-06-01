@@ -91,6 +91,11 @@ public class Venda extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Codigo Produto");
 
+        tf_codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_codigoActionPerformed(evt);
+            }
+        });
         tf_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tf_codigoKeyPressed(evt);
@@ -236,6 +241,7 @@ public class Venda extends javax.swing.JInternalFrame {
                         vendaModelo.getQuantidade(),
                         vendaModelo.getValorVenda(),});
                 }
+                tf_codigo.setText("");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível adicionar o produto na venda", "Erro", JOptionPane.ERROR_MESSAGE);
 
@@ -243,6 +249,10 @@ public class Venda extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_tf_codigoKeyPressed
+
+    private void tf_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_codigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

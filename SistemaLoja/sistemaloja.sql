@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Jun-2023 às 03:43
+-- Tempo de geração: 01-Jun-2023 às 17:48
 -- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- versão do PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `sistemaloja`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produto`
+--
+
+CREATE TABLE `produto` (
+  `id` int(11) NOT NULL,
+  `codigo` varchar(10) NOT NULL,
+  `descricao` varchar(45) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `valorCusto` double NOT NULL,
+  `valorVenda` double NOT NULL,
+  `departamento` varchar(20) NOT NULL,
+  `marca` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `produto`
+--
+
+INSERT INTO `produto` (`id`, `codigo`, `descricao`, `quantidade`, `valorCusto`, `valorVenda`, `departamento`, `marca`) VALUES
+(1, '0001', 'Teste', 10, 40, 100, 'Roupa', 'Nike'),
+(2, '0002', 'Meia da lacoste', 15, 30, 70, 'Meias', 'Lacoste'),
+(3, 'teste', 'tes', 10, 12, 12, 'teste', 'teste'),
+(4, '0003', 'Calça', 10, 1500, 2000, 'Roupas', 'Nike'),
+(5, '0004', 'Nao sei', 25, 14, 20, 'Roupas', 'nao sei');
 
 -- --------------------------------------------------------
 
@@ -49,6 +77,12 @@ INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `cargo`) VALUES
 --
 
 --
+-- Índices para tabela `produto`
+--
+ALTER TABLE `produto`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -57,6 +91,12 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `produto`
+--
+ALTER TABLE `produto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
