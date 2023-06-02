@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProdutoModelo;
 import dao.VendaDao;
+import java.util.ArrayList;
 import modelo.VendaModelo;
 
 /**
@@ -78,15 +79,20 @@ public class Venda extends javax.swing.JInternalFrame {
 
         tabela_produtos_venda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Codigo", "Descricao", "Quantidade", "Valor Venda"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(tabela_produtos_venda);
 
         jLabel1.setText("Codigo Produto");
@@ -110,6 +116,12 @@ public class Venda extends javax.swing.JInternalFrame {
         jLabel5.setText("CPF/CNPJ:");
 
         jLabel6.setText("Telefone:");
+
+        tf_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_totalActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Total:");
 
@@ -182,6 +194,11 @@ public class Venda extends javax.swing.JInternalFrame {
         );
 
         btn_pagamento.setText("Pagamento");
+        btn_pagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pagamentoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,21 +246,32 @@ public class Venda extends javax.swing.JInternalFrame {
 
     private void tf_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_codigoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-                itensVenda = vendaDao.adicionarProdutoVenda(tf_codigo.getText());
-                DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
-                model.setNumRows(0);
-                for (int i = 0; i < itensVenda.size(); i++) {
-                    VendaModelo vendaModelo = itensVenda.get(0);
-                    model.addRow(new Object[]{
-                        vendaModelo.getCodigo(),
-                        vendaModelo.getDescricao(),
-                        vendaModelo.getQuantidade(),
-                        vendaModelo.getValorVenda(),});
+
+            if (tf_codigo.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Insira o código interno do produto");
+            } else {
+                try {
+                    itensVenda = vendaDao.adicionarProdutoVenda(tf_codigo.getText());
+                    DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
+
+                    for (int i = 0; i < itensVenda.size(); i++) {
+                        VendaModelo vendaModelo = itensVenda.get(i);
+                        model.addRow(new Object[]{
+                            vendaModelo.getCodigo(),
+                            vendaModelo.getDescricao(),
+                            "1",
+                            vendaModelo.getValorVenda()
+                        });
+                        model.setNumRows(model.getRowCount());
+
+                    }
+
+                    tf_codigo.setText("");
+                    calcularValorTotal();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível adicionar o produto na venda", "Erro", JOptionPane.ERROR_MESSAGE);
+
                 }
-                tf_codigo.setText("");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Não foi possível adicionar o produto na venda", "Erro", JOptionPane.ERROR_MESSAGE);
 
             }
 
@@ -254,6 +282,33 @@ public class Venda extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_codigoActionPerformed
 
+    private void tf_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_totalActionPerformed
+
+    }//GEN-LAST:event_tf_totalActionPerformed
+
+    private void btn_pagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pagamentoActionPerformed
+
+    }//GEN-LAST:event_btn_pagamentoActionPerformed
+
+    private void calcularValorTotal() {
+        DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
+        int colunaValorVenda = 3;
+
+        List<Object> valoresVenda = new ArrayList<>();
+        int quantidadeLinhas = model.getRowCount();
+        for (int row = 0; row < quantidadeLinhas; row++) {
+            Object valores = model.getValueAt(row, colunaValorVenda);
+            valoresVenda.add(valores);
+            
+            double soma = 0;
+            for (int i = 0; i < valoresVenda.size(); i++) {
+                double valor = Double.parseDouble(valoresVenda.get(i).toString());
+                soma += valor;
+            }
+            String total = String.valueOf(soma);
+            tf_total.setText(total);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_clientes;

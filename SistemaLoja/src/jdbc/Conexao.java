@@ -7,6 +7,7 @@ package jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Conexao {
         try{
             return DriverManager.getConnection("jdbc:mysql://localhost/"+database+"?userSSL=false",user, password);
         }catch(SQLException ex){
-            System.out.println("Erro ao tentar realizar conexão com o banco de dados");
+           JOptionPane.showMessageDialog(null, "Erro ao conectar com o Banco de Dados", "Erro", JOptionPane.ERROR_MESSAGE);
             throw new RuntimeException(ex);
         }
         

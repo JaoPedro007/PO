@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import jdbc.Conexao;
 import modelo.VendaModelo;
+
 /**
  *
  * @author João Pedro
@@ -19,25 +20,27 @@ import modelo.VendaModelo;
 public class VendaDao {
     
        public List<VendaModelo> adicionarProdutoVenda(String codigo) throws SQLException {
-        Connection conexao = new Conexao().getConexao();
-        String sql = "Select * from produto where codigo= ?";
-        PreparedStatement ps = conexao.prepareStatement(sql);
-        ps.setString(1,codigo);
-        ResultSet rs = ps.executeQuery();
-        List<VendaModelo> produtosVenda = new ArrayList<>();
-        while (rs.next()) {
-            VendaModelo vendaModelo = new VendaModelo(rs.getString("codigo"),
-            rs.getString("descricao"), 
-            rs.getString("quantidade"),
-            rs.getString("valorVenda")); 
-            produtosVenda.add(vendaModelo);
-        }
-        rs.close();
-        ps.close();
-        conexao.close();
+           List<VendaModelo> produtosVenda;
+           try (Connection conexao = new Conexao().getConexao()) {
+               String sql = "Select * from produto where codigo= ?";
+               try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+                   ps.setString(1,codigo);
+                   try (ResultSet rs = ps.executeQuery()) {
+                       produtosVenda = new ArrayList<>();
+                       while (rs.next()) {
+                           VendaModelo vendaModelo = new VendaModelo(rs.getString("codigo"),
+                                    rs.getString("descricao"),
+                                   rs.getString("valorVenda"));
+                           produtosVenda.add(vendaModelo);
+                       }
+                   }
+               }
+           }
         
         return produtosVenda;
        }
+       
+    
     
     
     

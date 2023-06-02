@@ -8,12 +8,12 @@ package view;
  *
  * @author João Pedro
  */
-public class ClienteFornecedor extends javax.swing.JInternalFrame {
+public class Cliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClienteFornecedores
      */
-    public ClienteFornecedor() {
+    public Cliente() {
         initComponents();
     }
 
@@ -32,13 +32,13 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
         tf_cidade = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tfBuscar = new javax.swing.JTextField();
+        tf_buscar = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabela_cliente = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -53,6 +53,11 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
         tf_numero = new javax.swing.JTextField();
 
         jButton5.setText("Cancelar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nome");
 
@@ -60,7 +65,7 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Telefone");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -71,13 +76,13 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
                 "Nome", "CPF/CNPJ", "Telefone", "Cidade", "Bairro", "Rua", "Número"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tabela_cliente);
 
         jLabel5.setText("Cidade");
 
         jButton1.setText("Cadastrar");
 
-        btnBuscar.setText("Buscar");
+        btn_buscar.setText("Buscar");
 
         jButton2.setText("Excluir");
 
@@ -116,9 +121,9 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar)
+                        .addComponent(btn_buscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,8 +186,8 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
                     .addComponent(tf_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,10 +203,14 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.ButtonGroup btnTipo;
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -216,9 +225,9 @@ public class ClienteFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField tfBuscar;
+    private javax.swing.JTable tabela_cliente;
     private javax.swing.JTextField tf_bairro;
+    private javax.swing.JTextField tf_buscar;
     private javax.swing.JTextField tf_cidade;
     private javax.swing.JTextField tf_cpfCnpj;
     private javax.swing.JTextField tf_nome;

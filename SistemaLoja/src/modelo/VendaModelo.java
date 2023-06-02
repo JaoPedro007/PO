@@ -10,10 +10,9 @@ package modelo;
  */
 public class VendaModelo {
 
-    public VendaModelo(String codigo, String descricao, String quantidade, String valorVenda) {
+    public VendaModelo(String codigo, String descricao, String valorVenda) {
         this.codigo = codigo;
         this.descricao = descricao;
-        this.quantidade = quantidade;
         this.valorVenda = valorVenda;
     }
 
@@ -33,25 +32,21 @@ public class VendaModelo {
         this.descricao = descricao;
     }
 
-    public String getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(String quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public String getValorVenda() {
+     public String getValorVenda() {
         return valorVenda;
     }
 
     public void setValorVenda(String valorVenda) {
         this.valorVenda = valorVenda;
     }
+
+    @Override
+    public String toString() {
+        return "VendaModelo{" + "codigo=" + codigo + ", descricao=" + descricao + ", valorVenda=" + valorVenda + '}';
+    }
     
     String codigo;
     String descricao;
-    String quantidade;
     String valorVenda;
 
     

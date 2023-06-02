@@ -1,12 +1,11 @@
 package view;
 
-import java.awt.Desktop;
-import java.awt.Frame;
-import java.awt.event.ActionListener;
-import javax.crypto.AEADBadTagException;
+
+
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import view.Produto;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -228,12 +227,13 @@ public class Principal extends JFrame {
         produto.setVisible(true);
         desktopPane.add(produto);
         produto.setClosable(true);
+        
 
 
     }//GEN-LAST:event_menuProdutoActionPerformed
 
     private void menuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClienteActionPerformed
-        ClienteFornecedor clientefornecedor = new ClienteFornecedor();
+        Cliente clientefornecedor = new Cliente();
         clientefornecedor.setVisible(true);
         desktopPane.add(clientefornecedor);
         clientefornecedor.setClosable(true);

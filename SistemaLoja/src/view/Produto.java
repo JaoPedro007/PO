@@ -19,9 +19,11 @@ import modelo.UsuarioModelo;
  * @author João Pedro
  */
 public class Produto extends javax.swing.JInternalFrame {
-    
+
     ProdutoDao produtoDao = new ProdutoDao();
     private List<ProdutoModelo> produtos;
+    private ProdutoModelo produtoSelecionado;
+
     /**
      * Creates new form Produtos
      */
@@ -78,6 +80,11 @@ public class Produto extends javax.swing.JInternalFrame {
         });
 
         btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel1.setText("Produtos");
@@ -85,8 +92,18 @@ public class Produto extends javax.swing.JInternalFrame {
         btn_alterar.setText("Alterar");
 
         btn_salvar.setText("Salvar");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Codigo");
 
@@ -235,13 +252,12 @@ public class Produto extends javax.swing.JInternalFrame {
         String departamento = tf_departamento.getText();
         String marca = tf_marca.getText();
 
-
-        ProdutoModelo produto = new ProdutoModelo(descricao, codigo , quantidade, valorCusto, valorVenda, departamento, marca);
+        ProdutoModelo produto = new ProdutoModelo(descricao, codigo, quantidade, valorCusto, valorVenda, departamento, marca);
         try {
             produtoDao.cadastrarProduto(produto);
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
         } catch (SQLException ex) {
-         JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
 
         }
         tf_codigo.setText("");
@@ -251,31 +267,125 @@ public class Produto extends javax.swing.JInternalFrame {
         tf_venda.setText("");
         tf_departamento.setText("");
         tf_marca.setText("");
+        atualizarTabelaProduto();
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-         try {
+        try {
             produtos = produtoDao.buscarProduto(tf_buscar.getText());
             DefaultTableModel model = (DefaultTableModel) tabela_produto.getModel();
             model.setNumRows(0);
             for (int i = 0; i < produtos.size(); i++) {
                 ProdutoModelo produtoModelo = produtos.get(i);
                 model.addRow(new Object[]{
-                produtoModelo.getDescricao(),
-                produtoModelo.getCodigo(),
-                produtoModelo.getQuantidade(),
-                produtoModelo.getValorCusto(),
-                produtoModelo.getValorVenda(),
-                produtoModelo.getDepartamento(),
-                produtoModelo.getMarca()
+                    produtoModelo.getDescricao(),
+                    produtoModelo.getCodigo(),
+                    produtoModelo.getQuantidade(),
+                    produtoModelo.getValorCusto(),
+                    produtoModelo.getValorVenda(),
+                    produtoModelo.getDepartamento(),
+                    produtoModelo.getMarca()
                 });
             }
         } catch (SQLException ex) {
-          JOptionPane.showMessageDialog(null, "Não foi possível localizar os produtos", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Não foi possível localizar os produtos", "Erro", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_btn_buscarActionPerformed
 
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        int linha = tabela_produto.getSelectedRow();
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma Produto", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        produtoSelecionado = produtos.get(linha);
+        try {
+            produtoDao.excluirProduto(produtoSelecionado.getCodigo());
+            JOptionPane.showMessageDialog(null, "Produto excluído");
+            atualizarTabelaProduto();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        String codigo = tf_codigo.getText();
+        String descricao = tf_descricao.getText();
+        String quantidade = tf_quantidade.getText();
+        String valorCusto = tf_custo.getText();
+        String valorVenda = tf_venda.getText();
+        String departamento = tf_departamento.getText();
+        String marca = tf_marca.getText();
+
+        if (produtoSelecionado == null) {
+
+            ProdutoModelo produtoModelo = new ProdutoModelo(descricao, codigo, quantidade, valorCusto, valorVenda, departamento, marca);
+
+            try {
+                produtoDao.cadastrarProduto(produtoModelo);
+                JOptionPane.showMessageDialog(null, "Produto cadastrado");
+                tf_codigo.setText("");
+                tf_descricao.setText("");
+                tf_quantidade.setText("");
+                tf_custo.setText("");
+                tf_venda.setText("");
+                tf_departamento.setText("");
+                tf_marca.setText("");
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } else {
+            produtoSelecionado.setCodigo(codigo);
+            produtoSelecionado.setDescricao(descricao);
+            produtoSelecionado.setQuantidade(quantidade);
+            produtoSelecionado.setValorCusto(valorCusto);
+            produtoSelecionado.setValorVenda(valorVenda);
+            produtoSelecionado.setDepartamento(departamento);
+            produtoSelecionado.setMarca(marca);
+
+            try {
+
+                produtoDao.editar(produtoSelecionado);
+                JOptionPane.showMessageDialog(null, "Prouto foi editado com sucesso");
+                atualizarTabelaProduto();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao editar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    public void atualizarTabelaProduto() {
+        try {
+            produtos = produtoDao.buscarProduto(tf_buscar.getText());
+
+            DefaultTableModel model = (DefaultTableModel) tabela_produto.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < produtos.size(); i++) {
+                ProdutoModelo produtoModelo = produtos.get(i);
+                model.addRow(new Object[]{
+                    produtoModelo.getCodigo(),
+                    produtoModelo.getDescricao(),
+                    produtoModelo.getQuantidade(),
+                    produtoModelo.getValorCusto(),
+                    produtoModelo.getValorVenda(),
+                    produtoModelo.getMarca(),
+                    produtoModelo.getDepartamento(),});
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Marca;

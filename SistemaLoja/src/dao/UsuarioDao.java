@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import jdbc.Conexao;
 import modelo.UsuarioModelo;
-import view.Usuario;
 
 /**
  *
@@ -21,47 +20,49 @@ import view.Usuario;
 public class UsuarioDao {
     
     public void cadastrarUsuario(UsuarioModelo usuario)throws SQLException{
-        Connection conexao = new Conexao().getConexao();
-        String sql= "INSERT INTO usuario(nome,login,senha,cargo)VALUES (?,?,?,?)";
-        PreparedStatement ps = conexao.prepareStatement(sql);
-        ps.setString(1,usuario.getNome());
-        ps.setString(2, usuario.getLogin());
-        ps.setString(3,usuario.getSenha());
-        ps.setString(4,usuario.getCargo());
-        ps.execute();
-        ps.close();
-        conexao.close();
+        try (Connection conexao = new Conexao().getConexao()) {
+            String sql= "INSERT INTO usuario(nome,login,senha,cargo)VALUES (?,?,?,?)";
+            try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+                ps.setString(1,usuario.getNome());
+                ps.setString(2, usuario.getLogin());
+                ps.setString(3,usuario.getSenha());
+                ps.setString(4,usuario.getCargo());
+                ps.execute();
+            }
+        }
         
     }
     
-    public void excluirUsuario(int id) throws SQLException{
-        Connection conexao = new Conexao().getConexao();
-        String sql="DELETE FROM usuario where id= ?";
-        PreparedStatement ps = conexao.prepareStatement(sql);
-        ps.setInt(1, id);
-        
-        ps.executeUpdate();
-        ps.close();
-        conexao.close();
+    public void excluirUsuario(String login) throws SQLException{
+        try (Connection conexao = new Conexao().getConexao()) {
+            String sql="DELETE FROM usuario where login= ?";
+            try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+                ps.setString(1, login);
+                ps.executeUpdate();
+            }
+        }
     }
+    
+   
     
  
     
     public List<UsuarioModelo> buscarUsuario(String login) throws SQLException{
-        Connection conexao = new Conexao().getConexao();
-        String sql = "Select * from usuario where login like ?";
-        PreparedStatement ps = conexao.prepareStatement(sql);
-        ps.setString(1, "%" + login + "%");
-        ResultSet rs = ps.executeQuery();
-        List<UsuarioModelo> usuarios = new ArrayList<>();
-        while (rs.next()) {
-            UsuarioModelo usuariomodelo = new UsuarioModelo(rs.getString("nome"),
-                    rs.getString("login"), rs.getString("senha"), rs.getString("cargo"));
-            usuarios.add(usuariomodelo);
+        List<UsuarioModelo> usuarios;
+        try (Connection conexao = new Conexao().getConexao()) {
+            String sql = "Select * from usuario where login like ?";
+            try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+                ps.setString(1, "%" + login + "%");
+                try (ResultSet rs = ps.executeQuery()) {
+                    usuarios = new ArrayList<>();
+                    while (rs.next()) {
+                        UsuarioModelo usuariomodelo = new UsuarioModelo(rs.getString("nome"),
+                                rs.getString("login"), rs.getString("senha"), rs.getString("cargo"));
+                        usuarios.add(usuariomodelo);
+                    }
+                }
+            }
         }
-        rs.close();
-        ps.close();
-        conexao.close();
         
         return usuarios;
 

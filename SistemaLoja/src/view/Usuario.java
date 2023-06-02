@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.ProdutoModelo;
 import modelo.UsuarioModelo;
 
 /**
@@ -21,6 +22,8 @@ public class Usuario extends javax.swing.JInternalFrame {
     private List<UsuarioModelo> usuarios;
     private UsuarioModelo usuarioSelecionado;
 
+
+    
     /**
      * Creates new form Usuarios
      */
@@ -43,10 +46,10 @@ public class Usuario extends javax.swing.JInternalFrame {
         btn_excluir = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        tfBuscar = new javax.swing.JTextField();
+        btn_cacelar = new javax.swing.JButton();
+        tf_buscar = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabelaUsuario = new javax.swing.JTable();
+        tabela_usuario = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tf_nome = new javax.swing.JTextField();
@@ -78,9 +81,14 @@ public class Usuario extends javax.swing.JInternalFrame {
 
         jButton4.setText("Salvar");
 
-        jButton5.setText("Cancelar");
+        btn_cacelar.setText("Cancelar");
+        btn_cacelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cacelarActionPerformed(evt);
+            }
+        });
 
-        tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_usuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,7 +99,7 @@ public class Usuario extends javax.swing.JInternalFrame {
                 "Nome", "Login", "Senha", "Cargo"
             }
         ));
-        jScrollPane3.setViewportView(tabelaUsuario);
+        jScrollPane3.setViewportView(tabela_usuario);
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,11 +142,11 @@ public class Usuario extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5))))
+                                .addComponent(btn_cacelar))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnBuscar))
                             .addGroup(layout.createSequentialGroup()
@@ -184,7 +192,7 @@ public class Usuario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,7 +202,7 @@ public class Usuario extends javax.swing.JInternalFrame {
                     .addComponent(btn_excluir)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btn_cacelar))
                 .addGap(9, 9, 9))
         );
 
@@ -214,6 +222,7 @@ public class Usuario extends javax.swing.JInternalFrame {
             tf_nome.setText("");
             tf_login.setText("");
             tf_senha.setText("");
+            atualizarTabelaUsuario();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Usuario", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -226,11 +235,34 @@ public class Usuario extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_cargoActionPerformed
 
+      private void atualizarTabelaUsuario() {
+        try {
+            usuarios = usuariodao.buscarUsuario(tf_buscar.getText());
+
+            DefaultTableModel model = (DefaultTableModel) tabela_usuario.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < usuarios.size(); i++) {
+                UsuarioModelo usuarioModelo = usuarios.get(i);
+                model.addRow(new Object[]{
+                    usuarioModelo.getLogin(),
+                    usuarioModelo.getNome(),
+                    usuarioModelo.getSenha(),
+                    usuarioModelo.getCargo(),
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível buscar os usuários");
+        }
+      }
+
+    
+    
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
 
-            usuarios = usuariodao.buscarUsuario(tfBuscar.getText());
-            DefaultTableModel model = (DefaultTableModel) tabelaUsuario.getModel();
+            usuarios = usuariodao.buscarUsuario(tf_buscar.getText());
+            DefaultTableModel model = (DefaultTableModel) tabela_usuario.getModel();
             model.setNumRows(0);
             for (int i = 0; i < usuarios.size(); i++) {
                 UsuarioModelo usuariomodelo = usuarios.get(i);
@@ -242,39 +274,44 @@ public class Usuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
-
-        int linha = tabelaUsuario.getSelectedRow();
+        int linha = tabela_usuario.getSelectedRow();
         if (linha < 0) {
             JOptionPane.showMessageDialog(null, "Selecione um usuário", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
         usuarioSelecionado = usuarios.get(linha);
         try {
-            usuariodao.excluirUsuario(usuarioSelecionado.getId());
-            JOptionPane.showMessageDialog(null, "Pessoa excluída");
+            usuariodao.excluirUsuario(usuarioSelecionado.getLogin());
+            JOptionPane.showMessageDialog(null, "Usuário excluído");
+            atualizarTabelaUsuario();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao excluir o usuário", "Erro", JOptionPane.ERROR);
         }
-
+         
+     
     }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void btn_cacelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cacelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_cacelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btn_cacelar;
     private javax.swing.JButton btn_cadastrar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JComboBox<String> cargo;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tabelaUsuario;
-    private javax.swing.JTextField tfBuscar;
+    private javax.swing.JTable tabela_usuario;
+    private javax.swing.JTextField tf_buscar;
     private javax.swing.JTextField tf_login;
     private javax.swing.JTextField tf_nome;
     private javax.swing.JTextField tf_senha;
