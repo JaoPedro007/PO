@@ -4,16 +4,14 @@
  */
 package view;
 
-import java.awt.Event;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.ProdutoModelo;
 import dao.VendaDao;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import modelo.VendaModelo;
 
 /**
@@ -24,6 +22,7 @@ public class Venda extends javax.swing.JInternalFrame {
 
     VendaDao vendaDao = new VendaDao();
     private List<VendaModelo> itensVenda;
+
 
     /**
      * Creates new form Vendas
@@ -240,8 +239,8 @@ public class Venda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_produtosActionPerformed
-
-
+        ModalProduto modalProduto = new ModalProduto();
+        modalProduto.setVisible(true);
     }//GEN-LAST:event_btn_produtosActionPerformed
 
     private void tf_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_codigoKeyPressed
@@ -278,6 +277,7 @@ public class Venda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tf_codigoKeyPressed
 
+  
     private void tf_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_codigoActionPerformed
@@ -299,7 +299,7 @@ public class Venda extends javax.swing.JInternalFrame {
         for (int row = 0; row < quantidadeLinhas; row++) {
             Object valores = model.getValueAt(row, colunaValorVenda);
             valoresVenda.add(valores);
-            
+
             double soma = 0;
             for (int i = 0; i < valoresVenda.size(); i++) {
                 double valor = Double.parseDouble(valoresVenda.get(i).toString());

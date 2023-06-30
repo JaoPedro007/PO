@@ -7,12 +7,10 @@ package view;
 import dao.ProdutoDao;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProdutoModelo;
-import modelo.UsuarioModelo;
 
 /**
  *
@@ -90,6 +88,11 @@ public class Produto extends javax.swing.JInternalFrame {
         jLabel1.setText("Produtos");
 
         btn_alterar.setText("Alterar");
+        btn_alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alterarActionPerformed(evt);
+            }
+        });
 
         btn_salvar.setText("Salvar");
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -260,13 +263,7 @@ public class Produto extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
 
         }
-        tf_codigo.setText("");
-        tf_descricao.setText("");
-        tf_quantidade.setText("");
-        tf_custo.setText("");
-        tf_venda.setText("");
-        tf_departamento.setText("");
-        tf_marca.setText("");
+        limparCampos();
         atualizarTabelaProduto();
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
@@ -278,8 +275,8 @@ public class Produto extends javax.swing.JInternalFrame {
             for (int i = 0; i < produtos.size(); i++) {
                 ProdutoModelo produtoModelo = produtos.get(i);
                 model.addRow(new Object[]{
-                    produtoModelo.getDescricao(),
                     produtoModelo.getCodigo(),
+                    produtoModelo.getDescricao(),
                     produtoModelo.getQuantidade(),
                     produtoModelo.getValorCusto(),
                     produtoModelo.getValorVenda(),
@@ -322,6 +319,7 @@ public class Produto extends javax.swing.JInternalFrame {
         String departamento = tf_departamento.getText();
         String marca = tf_marca.getText();
 
+
         if (produtoSelecionado == null) {
 
             ProdutoModelo produtoModelo = new ProdutoModelo(descricao, codigo, quantidade, valorCusto, valorVenda, departamento, marca);
@@ -329,13 +327,7 @@ public class Produto extends javax.swing.JInternalFrame {
             try {
                 produtoDao.cadastrarProduto(produtoModelo);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado");
-                tf_codigo.setText("");
-                tf_descricao.setText("");
-                tf_quantidade.setText("");
-                tf_custo.setText("");
-                tf_venda.setText("");
-                tf_departamento.setText("");
-                tf_marca.setText("");
+                limparCampos();
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao salvar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -352,10 +344,11 @@ public class Produto extends javax.swing.JInternalFrame {
             produtoSelecionado.setMarca(marca);
 
             try {
-
+                System.out.println(produtoSelecionado);
                 produtoDao.editar(produtoSelecionado);
                 JOptionPane.showMessageDialog(null, "Prouto foi editado com sucesso");
                 atualizarTabelaProduto();
+                limparCampos();
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao editar o Produto", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -363,6 +356,33 @@ public class Produto extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void btn_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarActionPerformed
+        int row = tabela_produto.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um produto", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        produtoSelecionado = produtos.get(row);
+        tf_codigo.setText(produtoSelecionado.getCodigo());
+        tf_descricao.setText(produtoSelecionado.getDescricao());
+        tf_quantidade.setText(produtoSelecionado.getQuantidade());
+        tf_custo.setText(produtoSelecionado.getValorCusto());
+        tf_venda.setText(produtoSelecionado.getValorVenda());
+        tf_marca.setText(produtoSelecionado.getMarca());
+        tf_departamento.setText(produtoSelecionado.getDepartamento());
+
+    }//GEN-LAST:event_btn_alterarActionPerformed
+    private void limparCampos() {
+        tf_codigo.setText("");
+        tf_descricao.setText("");
+        tf_quantidade.setText("");
+        tf_custo.setText("");
+        tf_venda.setText("");
+        tf_departamento.setText("");
+        tf_marca.setText("");
+    }
 
     public void atualizarTabelaProduto() {
         try {
@@ -378,11 +398,11 @@ public class Produto extends javax.swing.JInternalFrame {
                     produtoModelo.getQuantidade(),
                     produtoModelo.getValorCusto(),
                     produtoModelo.getValorVenda(),
-                    produtoModelo.getMarca(),
-                    produtoModelo.getDepartamento(),});
+                    produtoModelo.getDepartamento(),
+                    produtoModelo.getMarca()});
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao atualizar os produtos", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -413,4 +433,8 @@ public class Produto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tf_quantidade;
     private javax.swing.JTextField tf_venda;
     // End of variables declaration//GEN-END:variables
+
+    void setCloseIcon(Icon icon) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

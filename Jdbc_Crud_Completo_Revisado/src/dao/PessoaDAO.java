@@ -60,18 +60,18 @@ public class PessoaDAO {
     }
     
     public void alterar(Pessoa pessoa)throws SQLException{
-        Connection conexao = new Conexao().getConexao();
-        String sql= "UPDATE pessoa set descricao=?,cep=?, bairro=?,numero=?"
-                + " where codigo=?";
-        PreparedStatement ps = conexao.prepareStatement(sql);
-        ps.setString(1,pessoa.getDescricao());
-        ps.setString(2, pessoa.getCep());
-        ps.setString(3,pessoa.getBairro());
-        ps.setInt(4, pessoa.getNumero());
-        ps.setInt(5, pessoa.getCodigo());
-        ps.executeUpdate();
-        ps.close();
-        conexao.close();
+        try (Connection conexao = new Conexao().getConexao()) {
+            String sql= "UPDATE pessoa set descricao=?,cep=?, bairro=?,numero=?"
+                    + " where codigo=?";
+            try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+                ps.setString(1,pessoa.getDescricao());
+                ps.setString(2, pessoa.getCep());
+                ps.setString(3,pessoa.getBairro());
+                ps.setInt(4, pessoa.getNumero());
+                ps.setInt(5, pessoa.getCodigo());
+                ps.executeUpdate();
+            }
+        }
     }
     
     

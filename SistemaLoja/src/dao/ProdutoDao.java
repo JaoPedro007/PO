@@ -76,8 +76,7 @@ public class ProdutoDao {
 
     public void editar(ProdutoModelo produto) throws SQLException {
         try (Connection conexao = new Conexao().getConexao()) {
-            String sql = "UPDATE produto set codigo=? ,descricao=?, quantidade=?, valorCusto=?, valorVenda=?, marca=?, departamento=?"
-                    + " where codigo=?";
+            String sql = "UPDATE produto set codigo=?,descricao=?,quantidade=?,valorCusto=?,valorVenda=?,departamento=?,marca=?" + " where codigo=?";
             try (PreparedStatement ps = conexao.prepareStatement(sql)) {
                 ps.setString(1, produto.getCodigo());
                 ps.setString(2, produto.getDescricao());
@@ -86,6 +85,7 @@ public class ProdutoDao {
                 ps.setString(5, produto.getValorVenda());
                 ps.setString(6, produto.getDepartamento());
                 ps.setString(7, produto.getMarca());
+                ps.setString(8, produto.getCodigo());
 
                 ps.executeUpdate();
             }

@@ -4,11 +4,22 @@
  */
 package view;
 
+import dao.ClienteDao;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.ClienteModelo;
+
 /**
  *
  * @author João Pedro
  */
 public class Cliente extends javax.swing.JInternalFrame {
+
+    ClienteDao clienteDao = new ClienteDao();
+    private List<ClienteModelo> clientes;
+    private ClienteModelo clienteSelecionado;
 
     /**
      * Creates new form ClienteFornecedores
@@ -27,7 +38,7 @@ public class Cliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         btnTipo = new javax.swing.ButtonGroup();
-        jButton5 = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
         tf_telefone = new javax.swing.JTextField();
         tf_cidade = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -37,13 +48,13 @@ public class Cliente extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tabela_cliente = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_cadastrar = new javax.swing.JButton();
         btn_buscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btn_editar = new javax.swing.JButton();
         tf_nome = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        btn_salvar = new javax.swing.JButton();
         tf_cpfCnpj = new javax.swing.JTextField();
         tf_bairro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -52,10 +63,10 @@ public class Cliente extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         tf_numero = new javax.swing.JTextField();
 
-        jButton5.setText("Cancelar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_cancelarActionPerformed(evt);
             }
         });
 
@@ -80,18 +91,43 @@ public class Cliente extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Cidade");
 
-        jButton1.setText("Cadastrar");
+        btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrarActionPerformed(evt);
+            }
+        });
 
         btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Excluir");
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel1.setText("Clientes");
 
-        jButton3.setText("Alterar");
+        btn_editar.setText("Alterar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Salvar");
+        btn_salvar.setText("Salvar");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Bairro");
 
@@ -108,15 +144,15 @@ public class Cliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btn_cadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btn_excluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btn_editar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btn_salvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5))))
+                        .addComponent(btn_cancelar))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -192,30 +228,189 @@ public class Cliente extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btn_cadastrar)
+                    .addComponent(btn_excluir)
+                    .addComponent(btn_editar)
+                    .addComponent(btn_salvar)
+                    .addComponent(btn_cancelar))
                 .addGap(9, 9, 9))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        try {
+            clientes = clienteDao.buscarCliente(tf_buscar.getText());
+            DefaultTableModel model = (DefaultTableModel) tabela_cliente.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < clientes.size(); i++) {
+                ClienteModelo clienteModelo = clientes.get(i);
+                model.addRow(new Object[]{
+                    clienteModelo.getNome(),
+                    clienteModelo.getCpfcnpj(),
+                    clienteModelo.getTelefone(),
+                    clienteModelo.getCidade(),
+                    clienteModelo.getBairro(),
+                    clienteModelo.getRua(),
+                    clienteModelo.getNumero()
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível localizar os clientes", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+
+        String nome = tf_nome.getText();
+        String cpfcnpj = tf_cpfCnpj.getText();
+        String telefone = tf_telefone.getText();
+        String cidade = tf_cidade.getText();
+        String bairro = tf_bairro.getText();
+        String rua = tf_rua.getText();
+        String numero = tf_numero.getText();
+
+        ClienteModelo cliente = new ClienteModelo(nome, cpfcnpj, telefone, cidade, bairro, rua, numero);
+        try {
+            clienteDao.cadastrarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
+        limparCampos();
+        atualizarTabelaCliente();
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
+
+
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        int linha = tabela_cliente.getSelectedRow();
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma Cliente", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        clienteSelecionado = clientes.get(linha);
+        try {
+            clienteDao.excluirCliente(clienteSelecionado.getCpfcnpj());
+            JOptionPane.showMessageDialog(null, "Cliente excluído");
+            atualizarTabelaCliente();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        int row = tabela_cliente.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um cliente", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        clienteSelecionado = clientes.get(row);
+        tf_nome.setText(clienteSelecionado.getNome());
+        tf_cpfCnpj.setText(clienteSelecionado.getCpfcnpj());
+        tf_telefone.setText(clienteSelecionado.getTelefone());
+        tf_cidade.setText(clienteSelecionado.getCidade());
+        tf_bairro.setText(clienteSelecionado.getBairro());
+        tf_rua.setText(clienteSelecionado.getRua());
+        tf_numero.setText(clienteSelecionado.getNumero());
+
+
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        String nome = tf_nome.getText();
+        String cpfcnpj = tf_cpfCnpj.getText();
+        String telefone = tf_telefone.getText();
+        String cidade = tf_cidade.getText();
+        String bairro = tf_bairro.getText();
+        String rua = tf_rua.getText();
+        String numero = tf_numero.getText();
+
+
+        if (clienteSelecionado == null) {
+
+            ClienteModelo clienteModelo = new ClienteModelo(nome, cpfcnpj, telefone, cidade, bairro, rua, numero);
+                try {
+                clienteDao.cadastrarCliente(clienteModelo);
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado");
+                limparCampos();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } else {
+            clienteSelecionado.setNome(nome);
+            clienteSelecionado.setCpfcnpj(cpfcnpj);
+            clienteSelecionado.setTelefone(telefone);
+            clienteSelecionado.setCidade(cidade);
+            clienteSelecionado.setBairro(bairro);
+            clienteSelecionado.setRua(rua);
+            clienteSelecionado.setNumero(numero);
+
+            try {
+                System.out.println(clienteSelecionado.toString());
+                clienteDao.editar(clienteSelecionado);
+                JOptionPane.showMessageDialog(null, "Cliente foi editado com sucesso");
+                limparCampos();
+                atualizarTabelaCliente();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao editar o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void limparCampos(){
+                tf_nome.setText("");
+                tf_cpfCnpj.setText("");
+                tf_telefone.setText("");
+                tf_cidade.setText("");
+                tf_bairro.setText("");
+                tf_rua.setText("");
+                tf_numero.setText("");
+    }
+    
+    public void atualizarTabelaCliente() {
+        try {
+            clientes = clienteDao.buscarCliente(tf_buscar.getText());
+
+            DefaultTableModel model = (DefaultTableModel) tabela_cliente.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < clientes.size(); i++) {
+                ClienteModelo clienteModelo = clientes.get(i);
+                model.addRow(new Object[]{
+                    clienteModelo.getNome(),
+                    clienteModelo.getCpfcnpj(),
+                    clienteModelo.getTelefone(),
+                    clienteModelo.getCidade(),
+                    clienteModelo.getBairro(),
+                    clienteModelo.getRua(),
+                    clienteModelo.getNumero()});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao atualizar os clientes", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnTipo;
     private javax.swing.JButton btn_buscar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_salvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

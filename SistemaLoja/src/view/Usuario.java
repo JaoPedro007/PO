@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.ClienteModelo;
 import modelo.ProdutoModelo;
 import modelo.UsuarioModelo;
 
@@ -44,8 +45,8 @@ public class Usuario extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         btn_cadastrar = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_editar = new javax.swing.JButton();
+        btn_salvar = new javax.swing.JButton();
         btn_cacelar = new javax.swing.JButton();
         tf_buscar = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -77,9 +78,19 @@ public class Usuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("Alterar");
+        btn_editar.setText("Alterar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Salvar");
+        btn_salvar.setText("Salvar");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
         btn_cacelar.setText("Cancelar");
         btn_cacelar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,9 +149,9 @@ public class Usuario extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_excluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btn_editar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)
+                                .addComponent(btn_salvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_cacelar))))
                     .addGroup(layout.createSequentialGroup()
@@ -200,8 +211,8 @@ public class Usuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cadastrar)
                     .addComponent(btn_excluir)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(btn_editar)
+                    .addComponent(btn_salvar)
                     .addComponent(btn_cacelar))
                 .addGap(9, 9, 9))
         );
@@ -244,8 +255,8 @@ public class Usuario extends javax.swing.JInternalFrame {
             for (int i = 0; i < usuarios.size(); i++) {
                 UsuarioModelo usuarioModelo = usuarios.get(i);
                 model.addRow(new Object[]{
-                    usuarioModelo.getLogin(),
                     usuarioModelo.getNome(),
+                    usuarioModelo.getLogin(),
                     usuarioModelo.getSenha(),
                     usuarioModelo.getCargo(),
                 });
@@ -295,15 +306,77 @@ public class Usuario extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btn_cacelarActionPerformed
 
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+                int row = tabela_usuario.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um usuario", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        usuarioSelecionado = usuarios.get(row);
+        tf_nome.setText(usuarioSelecionado.getNome());
+        tf_login.setText(usuarioSelecionado.getLogin());
+        tf_senha.setText(usuarioSelecionado.getSenha());
+        Object cargoSelecionado = usuarioSelecionado.getCargo();
+        cargo.setSelectedItem(cargoSelecionado);
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        String nome = tf_nome.getText();
+        String login = tf_login.getText();
+        String senha = tf_senha.getText();
+        Object cargo = this.cargo.getSelectedItem();
+
+
+
+        if (usuarioSelecionado == null) {
+            UsuarioModelo usuarioModelo = new UsuarioModelo(nome, login, senha, senha);
+                try {
+                usuariodao.cadastrarUsuario(usuarioModelo);
+                JOptionPane.showMessageDialog(null, "Usuario cadastrado");
+                limparCampos();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } else {
+            usuarioSelecionado.setNome(nome);
+            usuarioSelecionado.setLogin(login);
+            usuarioSelecionado.setSenha(senha);
+            Object cargoSelecionado = this.cargo.getSelectedItem();
+            usuarioSelecionado.setCargo((String) cargoSelecionado);            
+
+
+            try {
+                System.out.println(usuarioSelecionado.toString());
+                usuariodao.editarUsuario(usuarioSelecionado);
+                JOptionPane.showMessageDialog(null, "Usuário foi editado com sucesso");
+                limparCampos();
+                atualizarTabelaUsuario();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao editar o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+    private void limparCampos(){
+        tf_login.setText("");
+        tf_nome.setText("");
+        tf_senha.setText("");
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btn_cacelar;
     private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_salvar;
     private javax.swing.JComboBox<String> cargo;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

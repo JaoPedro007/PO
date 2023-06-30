@@ -286,14 +286,14 @@ public class PessoaForm extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         int linha = tabela.getSelectedRow();
-         if (linha < 0) {
+        if (linha < 0) {
             JOptionPane.showMessageDialog(null, "Selecione uma pessoa", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
-         
+
         atualizaBotao(false);
         habilitarFormulario(true);
-        
+
         pessoaSelecionada = pessoas.get(linha);
         txf_Descricao.setText(pessoaSelecionada.getDescricao());
         txf_bairro.setText(pessoaSelecionada.getBairro());
@@ -307,7 +307,7 @@ public class PessoaForm extends javax.swing.JFrame {
         atualizaBotao(true);
         habilitarFormulario(false);
         pessoaSelecionada = null;
-        
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -370,6 +370,7 @@ public class PessoaForm extends javax.swing.JFrame {
             pessoaSelecionada.setNumero(numero);
 
             try {
+                System.out.println(pessoaSelecionada);
 
                 pessoaDao.alterar(pessoaSelecionada);
                 JOptionPane.showMessageDialog(null, "Pessoa alterada");
@@ -383,14 +384,14 @@ public class PessoaForm extends javax.swing.JFrame {
         pessoaSelecionada = null;
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void atualizarTabela() {
+    private void atualizarTabela() {;
         try {
             pessoas = pessoaDao.buscarPelaDescricao(txt_Pesquisa.getText());
 
             DefaultTableModel model = (DefaultTableModel) tabela.getModel();
             model.setNumRows(0);
             for (int i = 0; i < pessoas.size(); i++) {
-                UsuarioModelo usuariomodelo = pessoas.get(i);
+                Pessoa pessoa = pessoas.get(i);
                 model.addRow(new Object[]{pessoa.getDescricao(), pessoa.getCep(), pessoa.getBairro(), pessoa.getNumero(),});
             }
         } catch (SQLException ex) {
