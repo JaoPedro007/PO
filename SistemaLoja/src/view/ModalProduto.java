@@ -20,7 +20,6 @@ import modelo.VendaModelo;
  */
 public class ModalProduto extends javax.swing.JFrame {
 
-
     /**
      * Creates new form ModalProduto
      */
@@ -123,15 +122,8 @@ public class ModalProduto extends javax.swing.JFrame {
 
         String codigoProduto = value.toString();
 
-        System.out.print(codigoProduto);
-        VendaDao venda = new VendaDao();
-        try {
-            venda.adicionarProdutoVenda(codigoProduto);
-  
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Não foi possível adicionar o produto", "Atenção", JOptionPane.ERROR_MESSAGE);
-
-        }
+        Venda venda = new Venda();
+        venda.adicionarProdutoModal(codigoProduto);
 
     }//GEN-LAST:event_btn_adicionarActionPerformed
 

@@ -4,6 +4,15 @@
  */
 package view;
 
+import dao.DepartamentoDao;
+import dao.UsuarioDao;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.DepartamentoModelo;
+import modelo.UsuarioModelo;
+
 /**
  *
  * @author João Pedro
@@ -16,6 +25,9 @@ public class Departamento extends javax.swing.JInternalFrame {
     public Departamento() {
         initComponents();
     }
+    private DepartamentoDao departamentoDao = new DepartamentoDao();
+    private DepartamentoModelo departamentoSelecionado;
+    private List<DepartamentoModelo> departamentos;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,15 +39,15 @@ public class Departamento extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        tfBuscar = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btn_cadastrar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
+        btn_editar = new javax.swing.JButton();
+        btn_salvar = new javax.swing.JButton();
+        tf_buscar = new javax.swing.JTextField();
+        btn_cancelar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        btnBuscar = new javax.swing.JButton();
+        tabela_departamento = new javax.swing.JTable();
+        btn_buscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tf_nome = new javax.swing.JTextField();
         tf_descricao = new javax.swing.JTextField();
@@ -43,17 +55,42 @@ public class Departamento extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nome");
 
-        jButton1.setText("Cadastrar");
+        btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Excluir");
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Alterar");
+        btn_editar.setText("Alterar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Salvar");
+        btn_salvar.setText("Salvar");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Cancelar");
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_departamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -64,9 +101,14 @@ public class Departamento extends javax.swing.JInternalFrame {
                 "Nome", "Descrição"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tabela_departamento);
 
-        btnBuscar.setText("Buscar");
+        btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel1.setText("Departamentos");
@@ -85,22 +127,22 @@ public class Departamento extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btn_cadastrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)
+                                .addComponent(btn_excluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btn_editar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)
+                                .addComponent(btn_salvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5))))
+                                .addComponent(btn_cancelar))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscar))
+                                .addComponent(btn_buscar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -125,37 +167,168 @@ public class Departamento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btn_cadastrar)
+                    .addComponent(btn_excluir)
+                    .addComponent(btn_editar)
+                    .addComponent(btn_salvar)
+                    .addComponent(btn_cancelar))
                 .addGap(9, 9, 9))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+        String nome = tf_nome.getText();
+        String descricao = tf_descricao.getText();
+
+        DepartamentoModelo departamento = new DepartamentoModelo(nome, descricao);
+
+        try {
+            departamentoDao.cadastrarDepartamento(departamento);
+            JOptionPane.showMessageDialog(null, "Departamento cadastrado com sucesso");
+            tf_nome.setText("");
+            tf_descricao.setText("");
+
+            atualizarTabelaDepartamento();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o Departamento", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
+
+    
+    
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        int linha = tabela_departamento.getSelectedRow();
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um Departamento", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        departamentoSelecionado = departamentos.get(linha);
+        try {
+            departamentoDao.excluirDepartamento(departamentoSelecionado.getNome());
+            JOptionPane.showMessageDialog(null, "Departamento excluído");
+            atualizarTabelaDepartamento();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir o departamento", "Erro", JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    
+    
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        int row = tabela_departamento.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um departamento", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        departamentoSelecionado = departamentos.get(row);
+        tf_nome.setText(departamentoSelecionado.getNome());
+        tf_descricao.setText(departamentoSelecionado.getDescricao());
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        String nome = tf_nome.getText();
+        String descricao = tf_descricao.getText();
+
+
+        if (departamentoSelecionado == null) {
+            DepartamentoModelo departamentoModelo = new DepartamentoModelo(nome, descricao);
+            try {
+                departamentoDao.cadastrarDepartamento(departamentoModelo);
+                JOptionPane.showMessageDialog(null, "Departamento cadastrado");
+                limparCampos();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar o Departamento", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } else {
+            departamentoSelecionado.setNome(nome);
+            departamentoSelecionado.setDescricao(descricao);
+            try {
+                System.out.println(departamentoSelecionado.toString());
+                departamentoDao.editarDepartamento(departamentoSelecionado);
+                JOptionPane.showMessageDialog(null, "Departamento foi editado com sucesso");
+                limparCampos();
+                atualizarTabelaDepartamento();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao editar o Departamento", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+           try {
+
+            departamentos = departamentoDao.buscarDepartamento(tf_buscar.getText());
+            DefaultTableModel model = (DefaultTableModel) tabela_departamento.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < departamentos.size(); i++) {
+                DepartamentoModelo departamentoModelo = departamentos.get(i);
+                model.addRow(new Object[]{departamentoModelo.getNome(), departamentoModelo.getDescricao()});
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+   
+    
+    private void limparCampos() {
+        tf_nome.setText("");
+        tf_descricao.setText("");
+
+    }
+    
+        private void atualizarTabelaDepartamento() {
+        try {
+            departamentos = departamentoDao.buscarDepartamento(tf_buscar.getText());
+
+            DefaultTableModel model = (DefaultTableModel) tabela_departamento.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < departamentos.size(); i++) {
+                DepartamentoModelo departamentoModelo = departamentos.get(i);
+                model.addRow(new Object[]{
+                    departamentoModelo.getNome(),
+                    departamentoModelo.getDescricao(),
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível buscar os departamentos");
+        }
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_salvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField tfBuscar;
+    private javax.swing.JTable tabela_departamento;
+    private javax.swing.JTextField tf_buscar;
     private javax.swing.JTextField tf_descricao;
     private javax.swing.JTextField tf_nome;
     // End of variables declaration//GEN-END:variables

@@ -9,6 +9,9 @@ package modelo;
  * @author João Pedro
  */
 public class VendaModelo {
+    public VendaModelo(){
+        
+    }
 
     public VendaModelo(String codigo, String descricao, String valorVenda) {
         this.codigo = codigo;

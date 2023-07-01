@@ -36,7 +36,6 @@ public class VendaDao {
                    }
                }
            }
-        System.out.println("Produtos da venda:  " + produtosVenda);
 
         return produtosVenda;
 

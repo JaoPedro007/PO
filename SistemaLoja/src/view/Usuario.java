@@ -307,7 +307,7 @@ public class Usuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_cacelarActionPerformed
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-                int row = tabela_usuario.getSelectedRow();
+        int row = tabela_usuario.getSelectedRow();
         if (row < 0) {
             JOptionPane.showMessageDialog(null, "Selecione um usuario", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
@@ -337,7 +337,7 @@ public class Usuario extends javax.swing.JInternalFrame {
                 limparCampos();
 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao salvar o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Erro ao salvar o Usuario", "Erro", JOptionPane.ERROR_MESSAGE);
 
             }
 
@@ -357,7 +357,7 @@ public class Usuario extends javax.swing.JInternalFrame {
                 atualizarTabelaUsuario();
 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao editar o Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Erro ao editar o Departamento", "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
         }

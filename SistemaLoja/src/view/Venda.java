@@ -23,7 +23,6 @@ public class Venda extends javax.swing.JInternalFrame {
     VendaDao vendaDao = new VendaDao();
     private List<VendaModelo> itensVenda;
 
-
     /**
      * Creates new form Vendas
      */
@@ -277,7 +276,38 @@ public class Venda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tf_codigoKeyPressed
 
-  
+    public void adicionarProdutoModal(String codigo) {
+        if (codigo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Insira o código interno do produto");
+        } else {
+            try {
+                itensVenda = vendaDao.adicionarProdutoVenda(codigo);
+                DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
+                for (int i = 0; i < itensVenda.size(); i++) {
+                    VendaModelo vendaModelo = itensVenda.get(i);
+                    model.addRow(new Object[]{
+                        vendaModelo.getCodigo(),
+                        vendaModelo.getDescricao(),
+                        "1",
+                        vendaModelo.getValorVenda()
+                    });
+
+                    System.out.print("\nCodigo: " + vendaModelo.getCodigo());
+                    System.out.print("\nDescricao: " + vendaModelo.getDescricao());
+                    System.out.print("\nValor Venda: " + vendaModelo.getValorVenda());
+                    model.setNumRows(model.getRowCount());
+
+                }
+                calcularValorTotal();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possível adicionar o produto na venda", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        }
+    }
+
+
     private void tf_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_codigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_codigoActionPerformed
