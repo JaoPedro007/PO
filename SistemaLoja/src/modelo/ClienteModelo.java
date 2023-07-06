@@ -9,6 +9,11 @@ package modelo;
  * @author João Pedro
  */
 public class ClienteModelo {
+    
+    
+    public ClienteModelo(){
+        
+    }
 
     public ClienteModelo(String nome, String cpfcnpj, String telefone, String cidade, String bairro, String rua, String numero) {
         this.nome = nome;
@@ -80,6 +85,12 @@ public class ClienteModelo {
     @Override
     public String toString() {
         return "ClienteModelo{" + "nome=" + nome + ", cpfcnpj=" + cpfcnpj + ", telefone=" + telefone + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + '}';
+    }
+
+    public ClienteModelo(String nome, String cpfcnpj, String telefone) {
+        this.nome = nome;
+        this.cpfcnpj = cpfcnpj;
+        this.telefone = telefone;
     }
 
 

@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.Conexao;
-import modelo.ClienteModelo;
 import modelo.UsuarioModelo;
 
 /**
@@ -19,6 +18,31 @@ import modelo.UsuarioModelo;
  * @author aluno
  */
 public class UsuarioDao {
+    
+        public UsuarioModelo login(String login, String senha)throws SQLException{
+        Connection conexao = new Conexao().getConexao();
+        String sql="SELECT * FROM usuario where login =? and senha=?";
+        PreparedStatement ps = conexao.prepareStatement(sql);
+        ps.setString(1, login);
+        ps.setString(2, senha);
+        ResultSet rs=ps.executeQuery();
+        UsuarioModelo usuario=null;
+        
+        while(rs.next()){
+            
+            usuario=new UsuarioModelo();
+            usuario.setNome(rs.getString("nome"));
+            usuario.setLogin(rs.getString("login"));
+            usuario.setSenha(rs.getString("senha"));
+            usuario.setCargo(rs.getString("cargo"));
+        }
+        rs.close();
+        ps.close();
+        conexao.close();
+        
+        return usuario;
+        
+    }
 
     public void cadastrarUsuario(UsuarioModelo usuario) throws SQLException {
         try (Connection conexao = new Conexao().getConexao()) {

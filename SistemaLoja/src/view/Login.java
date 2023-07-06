@@ -4,6 +4,11 @@
  */
 package view;
 
+import dao.UsuarioDao;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import modelo.UsuarioModelo;
+
 /**
  *
  * @author aluno
@@ -28,10 +33,10 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         tf_usuario = new javax.swing.JTextField();
-        tf_senha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_entrar = new javax.swing.JButton();
+        tf_senha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,15 +59,14 @@ public class Login extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_entrar)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(30, 30, 30)
-                            .addComponent(tf_usuario))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGap(38, 38, 38)
-                            .addComponent(tf_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel1))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(tf_senha))))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -98,9 +102,29 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_entrarActionPerformed
-        Principal principal = new Principal();
-        principal.setVisible(true);
-        this.dispose();
+//        String login = tf_usuario.getText();
+//        String senha = String.valueOf(tf_senha.getPassword());
+//
+//        if (login.length() > 0 && senha.length() > 0) {
+//            UsuarioDao usuarioDao = new UsuarioDao();
+//            try {
+//                UsuarioModelo usuario = usuarioDao.login(login, senha);
+//                if (usuario == null) {
+//                    JOptionPane.showMessageDialog(null, "Login ou senha invalido", "Atençao", JOptionPane.WARNING_MESSAGE);
+//                    return;
+//                }
+//                Principal principal = new Principal();
+//                principal.setVisible(true);
+//                this.dispose();
+//
+//            } catch (SQLException ex) {
+//                JOptionPane.showMessageDialog(null, "Erro de consulta", "Erro", JOptionPane.ERROR_MESSAGE);
+//            }
+//
+//        }
+                Principal principal = new Principal();
+                principal.setVisible(true);
+                this.dispose();
     }//GEN-LAST:event_btn_entrarActionPerformed
 
     /**
@@ -143,7 +167,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField tf_senha;
+    private javax.swing.JPasswordField tf_senha;
     private javax.swing.JTextField tf_usuario;
     // End of variables declaration//GEN-END:variables
 }

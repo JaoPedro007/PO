@@ -4,11 +4,23 @@
  */
 package view;
 
+import dao.MarcaDao;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.DepartamentoModelo;
+import modelo.MarcaModelo;
+
 /**
  *
  * @author João Pedro
  */
 public class Marca extends javax.swing.JInternalFrame {
+
+    private MarcaDao marcaDao = new MarcaDao();
+    private MarcaModelo marcaSelecionada;
+    private List<MarcaModelo> marcas;
 
     /**
      * Creates new form Marcas
@@ -26,24 +38,29 @@ public class Marca extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfBuscar = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        tf_buscar = new javax.swing.JTextField();
+        btn_cancelar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        btnBuscar = new javax.swing.JButton();
+        tabela_marca = new javax.swing.JTable();
+        btn_buscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tf_nome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_cadastrar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
+        btn_alterar = new javax.swing.JButton();
+        btn_salvar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         tf_descricao = new javax.swing.JTextField();
 
-        jButton5.setText("Cancelar");
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_marca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -54,22 +71,42 @@ public class Marca extends javax.swing.JInternalFrame {
                 "Nome", "Descrição"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tabela_marca);
 
-        btnBuscar.setText("Buscar");
+        btn_buscar.setText("Buscar");
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel1.setText("Marcas");
 
         jLabel2.setText("Nome");
 
-        jButton1.setText("Cadastrar");
+        btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Excluir");
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Alterar");
+        btn_alterar.setText("Alterar");
+        btn_alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alterarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Salvar");
+        btn_salvar.setText("Salvar");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Descrição");
 
@@ -91,23 +128,23 @@ public class Marca extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btn_cadastrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)
+                                .addComponent(btn_excluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btn_alterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)
+                                .addComponent(btn_salvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5)))
+                                .addComponent(btn_cancelar)))
                         .addGap(6, 6, 6))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscar))
+                                .addComponent(btn_buscar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel2)
@@ -128,17 +165,17 @@ public class Marca extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscar))
+                            .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_buscar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5))
+                            .addComponent(btn_cadastrar)
+                            .addComponent(btn_excluir)
+                            .addComponent(btn_alterar)
+                            .addComponent(btn_salvar)
+                            .addComponent(btn_cancelar))
                         .addGap(9, 9, 9))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
@@ -157,20 +194,128 @@ public class Marca extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_descricaoActionPerformed
 
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+        String nome = tf_nome.getText();
+        String descricao = tf_descricao.getText();
+
+        MarcaModelo marca = new MarcaModelo(nome, descricao);
+
+        try {
+            marcaDao.cadastrarMarca(marca);
+            JOptionPane.showMessageDialog(null, "Marca cadastrada com sucesso");
+            tf_nome.setText("");
+            tf_descricao.setText("");
+
+            atualizarTabelaMarca();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar a Marca", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
+
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        int linha = tabela_marca.getSelectedRow();
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma Marca", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        marcaSelecionada = marcas.get(linha);
+        try {
+            marcaDao.excluirMarca(marcaSelecionada.getNome());
+            JOptionPane.showMessageDialog(null, "Marca excluída");
+            atualizarTabelaMarca();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir a Marca", "Erro", JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void btn_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarActionPerformed
+        int row = tabela_marca.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma Marca", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        marcaSelecionada = marcas.get(row);
+        tf_nome.setText(marcaSelecionada.getNome());
+        tf_descricao.setText(marcaSelecionada.getDescricao());
+    }//GEN-LAST:event_btn_alterarActionPerformed
+
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        String nome = tf_nome.getText();
+        String descricao = tf_descricao.getText();
+
+        if (marcaSelecionada == null) {
+            MarcaModelo marcaModelo = new MarcaModelo(nome, descricao);
+            try {
+                marcaDao.cadastrarMarca(marcaModelo);
+                JOptionPane.showMessageDialog(null, "Marca cadastrada");
+                limparCampos();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar a Marca", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } else {
+            marcaSelecionada.setNome(nome);
+            marcaSelecionada.setDescricao(descricao);
+            try {
+                System.out.println(marcaSelecionada.toString());
+                marcaDao.editarMarca(marcaSelecionada);
+                JOptionPane.showMessageDialog(null, "Marca foi editada com sucesso");
+                limparCampos();
+                atualizarTabelaMarca();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao editar a Marca", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void limparCampos() {
+        tf_nome.setText("");
+        tf_descricao.setText("");
+
+    }
+
+    private void atualizarTabelaMarca() {
+        try {
+            marcas = marcaDao.buscarMarca(tf_buscar.getText());
+
+            DefaultTableModel model = (DefaultTableModel) tabela_marca.getModel();
+            model.setNumRows(0);
+            for (int i = 0; i < marcas.size(); i++) {
+                MarcaModelo marcaModelo = marcas.get(i);
+                model.addRow(new Object[]{
+                    marcaModelo.getNome(),
+                    marcaModelo.getDescricao(),});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível buscar as Marcas");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btn_alterar;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_salvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField tfBuscar;
+    private javax.swing.JTable tabela_marca;
+    private javax.swing.JTextField tf_buscar;
     private javax.swing.JTextField tf_descricao;
     private javax.swing.JTextField tf_nome;
     // End of variables declaration//GEN-END:variables

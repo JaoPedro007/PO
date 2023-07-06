@@ -8,17 +8,11 @@ package modelo;
  *
  * @author João Pedro
  */
-public class VendaModelo {
-    public VendaModelo(){
+public class VendaModeloProduto {
+    public VendaModeloProduto(){
         
     }
-
-    public VendaModelo(String codigo, String descricao, String valorVenda) {
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.valorVenda = valorVenda;
-    }
-
+    
     public String getCodigo() {
         return codigo;
     }
@@ -35,7 +29,7 @@ public class VendaModelo {
         this.descricao = descricao;
     }
 
-     public String getValorVenda() {
+    public String getValorVenda() {
         return valorVenda;
     }
 
@@ -43,14 +37,20 @@ public class VendaModelo {
         this.valorVenda = valorVenda;
     }
 
-    @Override
-    public String toString() {
-        return "VendaModelo{" + "codigo=" + codigo + ", descricao=" + descricao + ", valorVenda=" + valorVenda + '}';
-    }
     
+    public VendaModeloProduto(String codigo, String descricao, String valorVenda) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+        this.valorVenda = valorVenda;
+    }
+
+
+  
+
     String codigo;
     String descricao;
     String valorVenda;
+
 
     
 }

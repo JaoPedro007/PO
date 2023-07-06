@@ -1,7 +1,9 @@
 package view;
 
+import dao.UsuarioDao;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import modelo.UsuarioModelo;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,6 +14,8 @@ import javax.swing.JFrame;
  * @author João Pedro
  */
 public class Principal extends JFrame {
+
+    private Usuario usuario;
 
     private final JDesktopPane desktopPane;
 
@@ -25,9 +29,10 @@ public class Principal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(desktopPane);
 
+//        controlarNiveisAcesso();
+
     }
 
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -261,8 +266,6 @@ public class Principal extends JFrame {
     private void menuNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNotaActionPerformed
         Venda venda = new Venda();
         venda.setVisible(true);
-        desktopPane.add(venda);
-        venda.setClosable(true);
     }//GEN-LAST:event_menuNotaActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
@@ -275,6 +278,17 @@ public class Principal extends JFrame {
         desktopPane.add(sobre);
         sobre.setClosable(true);
     }//GEN-LAST:event_menuSobreActionPerformed
+    
+//    private void controlarNiveisAcesso(){
+//    UsuarioModelo usuario = new UsuarioModelo();
+//    if(usuario.getCargo().equals("caixa")){
+//        this.menuFerramentas.setVisible(false);
+//    }
+//
+//    else if(usuario.getCargo().equals("admin")){
+//        this.menuFerramentas.setVisible(true);
+//    }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,30 +4,44 @@
  */
 package view;
 
+import dao.VendaClienteDao;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import dao.VendaDao;
+import dao.VendaProdutoDao;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import modelo.VendaModelo;
+import java.util.HashSet;
+import java.util.Set;
+import modelo.VendaModeloCliente;
+import modelo.VendaModeloProduto;
 
 /**
  *
  * @author João Pedro
  */
-public class Venda extends javax.swing.JInternalFrame {
+public class Venda extends javax.swing.JFrame {
 
-    VendaDao vendaDao = new VendaDao();
-    private List<VendaModelo> itensVenda;
+    VendaProdutoDao vendaProdutoDao = new VendaProdutoDao();
+    VendaClienteDao vendaClienteDao = new VendaClienteDao();
+
+    private List<VendaModeloProduto> itensVenda;
+    private List<VendaModeloCliente> dados;
+
+    DialogProduto dialogProduto = new DialogProduto(this, true);
+    DialogCliente dialogCliente = new DialogCliente(this, true);
 
     /**
      * Creates new form Vendas
      */
     public Venda() {
         initComponents();
+    }
+    private Venda venda;
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
 
     /**
@@ -39,6 +53,7 @@ public class Venda extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btn_clientes = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -52,19 +67,31 @@ public class Venda extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        tf_nome = new javax.swing.JTextField();
-        tf_cpfCnpj = new javax.swing.JTextField();
-        tf_telefone = new javax.swing.JTextField();
         tf_total = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        tf_nome_cliente = new javax.swing.JTextField();
+        tf_cpf_cliente = new javax.swing.JTextField();
+        tf_telefone_cliente = new javax.swing.JTextField();
         btn_pagamento = new javax.swing.JButton();
+
+        jTextField1.setText("jTextField1");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Vendas");
 
         btn_clientes.setText("Clientes");
+        btn_clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clientesActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Salvar");
+        jButton4.setText("Finalizar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         btn_produtos.setText("Produtos");
         btn_produtos.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +142,7 @@ public class Venda extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Telefone:");
 
+        tf_total.setEditable(false);
         tf_total.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_totalActionPerformed(evt);
@@ -128,11 +156,14 @@ public class Venda extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -141,26 +172,22 @@ public class Venda extends javax.swing.JInternalFrame {
                             .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel5)
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_cpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(133, 133, 133)
-                                .addComponent(jLabel5)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(tf_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_total, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                                .addComponent(tf_nome_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(tf_cpf_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(tf_telefone_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,9 +212,9 @@ public class Venda extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_cpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_nome_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_cpf_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_telefone_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
 
@@ -203,11 +230,10 @@ public class Venda extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addGap(18, 18, 18)
@@ -215,8 +241,7 @@ public class Venda extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btn_produtos)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_pagamento)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btn_pagamento))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +263,55 @@ public class Venda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_produtosActionPerformed
-        ModalProduto modalProduto = new ModalProduto();
-        modalProduto.setVisible(true);
+        dialogProduto.setVisible(true);
+        String codigoProduto = dialogProduto.getCodigoProdutoDialog();
+
+        if (codigoProduto == null) {
+            JOptionPane.showMessageDialog(null, "Insira o código interno do produto");
+        } else {
+            try {
+                itensVenda = vendaProdutoDao.adicionarProdutoVenda(codigoProduto);
+                DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
+
+                for (int i = 0; i < itensVenda.size(); i++) {
+                    VendaModeloProduto vendaModeloProduto = itensVenda.get(i);
+                    model.addRow(new Object[]{
+                        vendaModeloProduto.getCodigo(),
+                        vendaModeloProduto.getDescricao(),
+                        "1",
+                        vendaModeloProduto.getValorVenda()
+                    });
+                    model.setNumRows(model.getRowCount());
+
+                }
+
+                tf_codigo.setText("");
+                calcularValorTotal();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possível adicionar o produto na venda", "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+
+
     }//GEN-LAST:event_btn_produtosActionPerformed
+
+    public void adicionarDadosCliente(String cpf) throws SQLException {
+        dados = vendaClienteDao.adicionarClienteVenda(cpf);
+        VendaModeloCliente clienteSelecionado = dados.get(0);
+
+        String cpfCnpj = clienteSelecionado.getCpfCnpj();
+        String telefone = clienteSelecionado.getTelefone();
+        String nome = clienteSelecionado.getNome();
+        
+        tf_nome_cliente.setText(nome);
+        tf_cpf_cliente.setText(cpfCnpj);
+        tf_telefone_cliente.setText(telefone);
+        
+
+
+    }
+
 
     private void tf_codigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_codigoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -249,16 +320,16 @@ public class Venda extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Insira o código interno do produto");
             } else {
                 try {
-                    itensVenda = vendaDao.adicionarProdutoVenda(tf_codigo.getText());
+                    itensVenda = vendaProdutoDao.adicionarProdutoVenda(tf_codigo.getText());
                     DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
 
                     for (int i = 0; i < itensVenda.size(); i++) {
-                        VendaModelo vendaModelo = itensVenda.get(i);
+                        VendaModeloProduto vendaModeloProduto = itensVenda.get(i);
                         model.addRow(new Object[]{
-                            vendaModelo.getCodigo(),
-                            vendaModelo.getDescricao(),
+                            vendaModeloProduto.getCodigo(),
+                            vendaModeloProduto.getDescricao(),
                             "1",
-                            vendaModelo.getValorVenda()
+                            vendaModeloProduto.getValorVenda()
                         });
                         model.setNumRows(model.getRowCount());
 
@@ -276,25 +347,21 @@ public class Venda extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tf_codigoKeyPressed
 
-    public void adicionarProdutoModal(String codigo) {
-        if (codigo.isEmpty()) {
+    public void adicionarProdutoDialog(String codigo) {
+        if (codigo == null) {
             JOptionPane.showMessageDialog(null, "Insira o código interno do produto");
         } else {
             try {
-                itensVenda = vendaDao.adicionarProdutoVenda(codigo);
+                itensVenda = vendaProdutoDao.adicionarProdutoVenda(codigo);
                 DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
                 for (int i = 0; i < itensVenda.size(); i++) {
-                    VendaModelo vendaModelo = itensVenda.get(i);
+                    VendaModeloProduto vendaModeloProduto = itensVenda.get(i);
                     model.addRow(new Object[]{
-                        vendaModelo.getCodigo(),
-                        vendaModelo.getDescricao(),
+                        vendaModeloProduto.getCodigo(),
+                        vendaModeloProduto.getDescricao(),
                         "1",
-                        vendaModelo.getValorVenda()
+                        vendaModeloProduto.getValorVenda()
                     });
-
-                    System.out.print("\nCodigo: " + vendaModelo.getCodigo());
-                    System.out.print("\nDescricao: " + vendaModelo.getDescricao());
-                    System.out.print("\nValor Venda: " + vendaModelo.getValorVenda());
                     model.setNumRows(model.getRowCount());
 
                 }
@@ -317,8 +384,18 @@ public class Venda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tf_totalActionPerformed
 
     private void btn_pagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pagamentoActionPerformed
-
+            DialogPagamento dialogPagamento = new DialogPagamento(this, true);
+            dialogPagamento.setVisible(true);
+        
     }//GEN-LAST:event_btn_pagamentoActionPerformed
+
+    private void btn_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clientesActionPerformed
+        dialogCliente.setVisible(true);
+    }//GEN-LAST:event_btn_clientesActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void calcularValorTotal() {
         DefaultTableModel model = (DefaultTableModel) tabela_produtos_venda.getModel();
@@ -337,6 +414,9 @@ public class Venda extends javax.swing.JInternalFrame {
             }
             String total = String.valueOf(soma);
             tf_total.setText(total);
+            DialogPagamento dialogPagamento = new DialogPagamento(this, true);
+            dialogPagamento.setValorTotal(soma);
+            
         }
     }
 
@@ -354,11 +434,12 @@ public class Venda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabela_produtos_venda;
     private javax.swing.JTextField tf_codigo;
-    private javax.swing.JTextField tf_cpfCnpj;
-    private javax.swing.JTextField tf_nome;
-    private javax.swing.JTextField tf_telefone;
+    private javax.swing.JTextField tf_cpf_cliente;
+    private javax.swing.JTextField tf_nome_cliente;
+    private javax.swing.JTextField tf_telefone_cliente;
     private javax.swing.JTextField tf_total;
     // End of variables declaration//GEN-END:variables
 }
