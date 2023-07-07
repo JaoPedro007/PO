@@ -10,6 +10,11 @@ package modelo;
  */
 public class DepartamentoModelo {
 
+    public DepartamentoModelo(){
+        
+    }
+    
+    
     public DepartamentoModelo(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
@@ -35,6 +40,15 @@ public class DepartamentoModelo {
     public String toString() {
         return "DepartamentoModelo{" + "nome=" + nome + ", descricao=" + descricao + '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    int id;
     String nome;
     String descricao;
     

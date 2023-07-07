@@ -14,7 +14,7 @@ public class ProdutoModelo {
     public ProdutoModelo() {
     }
 
-    public ProdutoModelo(String descricao,String codigo, String quantidade, String valorCusto, String valorVenda, String departamento, String marca) {
+    public ProdutoModelo(String codigo, String descricao, String quantidade, String valorCusto, String valorVenda, DepartamentoModelo departamento, MarcaModelo marca) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.quantidade = quantidade;
@@ -23,8 +23,6 @@ public class ProdutoModelo {
         this.departamento = departamento;
         this.marca = marca;
     }
-
-
 
     public String getCodigo() {
         return codigo;
@@ -66,28 +64,30 @@ public class ProdutoModelo {
         this.valorVenda = valorVenda;
     }
 
-    public String getDepartamento() {
+    public DepartamentoModelo getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(DepartamentoModelo departamento) {
         this.departamento = departamento;
     }
 
-    public String getMarca() {
+    public MarcaModelo getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(MarcaModelo marca) {
         this.marca = marca;
     }
+
+
 
     String codigo;
     String descricao;
     String quantidade;
     String valorCusto;
     String valorVenda;
-    String departamento;
-    String marca;
+    DepartamentoModelo departamento;
+    MarcaModelo marca;
 
 }

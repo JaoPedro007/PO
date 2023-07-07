@@ -4,12 +4,17 @@
  */
 package view;
 
+import dao.DepartamentoDao;
+import dao.MarcaDao;
 import dao.ProdutoDao;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.DepartamentoModelo;
+import modelo.MarcaModelo;
 import modelo.ProdutoModelo;
 
 /**
@@ -19,6 +24,9 @@ import modelo.ProdutoModelo;
 public class Produto extends javax.swing.JInternalFrame {
 
     ProdutoDao produtoDao = new ProdutoDao();
+    DepartamentoDao departamentoDao = new DepartamentoDao();
+    MarcaDao marcaDao = new MarcaDao();
+
     private List<ProdutoModelo> produtos;
     private ProdutoModelo produtoSelecionado;
 
@@ -27,6 +35,8 @@ public class Produto extends javax.swing.JInternalFrame {
      */
     public Produto() {
         initComponents();
+        carregarDepartamentos();
+        carregarMarcas();
     }
 
     /**
@@ -58,10 +68,10 @@ public class Produto extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tabela_produto = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        tf_departamento = new javax.swing.JTextField();
-        tf_marca = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         Marca = new javax.swing.JLabel();
+        cb_departamento = new javax.swing.JComboBox<>();
+        cb_marca = new javax.swing.JComboBox<>();
 
         btn_cadastrar.setText("Cadastrar");
         btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +145,10 @@ public class Produto extends javax.swing.JInternalFrame {
 
         Marca.setText("Marca ");
 
+        cb_departamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cb_marca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,10 +199,10 @@ public class Produto extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(Marca))
-                                .addGap(29, 29, 29)
+                                .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tf_marca, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                    .addComponent(tf_departamento))))
+                                    .addComponent(cb_departamento, 0, 123, Short.MAX_VALUE)
+                                    .addComponent(cb_marca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -201,8 +215,8 @@ public class Produto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(cb_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,8 +231,8 @@ public class Produto extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tf_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Marca))
+                            .addComponent(Marca)
+                            .addComponent(cb_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_custo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,14 +260,35 @@ public class Produto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregarDepartamentos() {
+
+        List<DepartamentoModelo> departamentos = departamentoDao.buscar();
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_departamento.getModel();
+        modelo.removeAllElements();
+        for (DepartamentoModelo departamento : departamentos) {
+            modelo.addElement(departamento.getNome());
+        }
+
+    }
+
+    private void carregarMarcas() {
+
+        List<MarcaModelo> marcas = marcaDao.buscar();
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_marca.getModel();
+        modelo.removeAllElements();
+        for (MarcaModelo marca : marcas) {
+            modelo.addElement(marca.getNome());
+        }
+
+    }
+
+
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
         String descricao = tf_descricao.getText();
         String codigo = tf_codigo.getText();
         String quantidade = tf_quantidade.getText();
         String valorCusto = tf_custo.getText();
         String valorVenda = tf_venda.getText();
-        String departamento = tf_departamento.getText();
-        String marca = tf_marca.getText();
 
         ProdutoModelo produto = new ProdutoModelo(descricao, codigo, quantidade, valorCusto, valorVenda, departamento, marca);
         try {
@@ -318,7 +353,6 @@ public class Produto extends javax.swing.JInternalFrame {
         String valorVenda = tf_venda.getText();
         String departamento = tf_departamento.getText();
         String marca = tf_marca.getText();
-
 
         if (produtoSelecionado == null) {
 
@@ -415,6 +449,8 @@ public class Produto extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_salvar;
+    private javax.swing.JComboBox<String> cb_departamento;
+    private javax.swing.JComboBox<String> cb_marca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -427,9 +463,7 @@ public class Produto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tf_buscar;
     private javax.swing.JTextField tf_codigo;
     private javax.swing.JTextField tf_custo;
-    private javax.swing.JTextField tf_departamento;
     private javax.swing.JTextField tf_descricao;
-    private javax.swing.JTextField tf_marca;
     private javax.swing.JTextField tf_quantidade;
     private javax.swing.JTextField tf_venda;
     // End of variables declaration//GEN-END:variables

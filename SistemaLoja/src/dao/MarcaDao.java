@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.Conexao;
+import modelo.DepartamentoModelo;
 import modelo.MarcaModelo;
 
 /**
@@ -75,4 +76,31 @@ public class MarcaDao {
         return marcas;
        
 }
+    
+    
+        public List<MarcaModelo> buscar() {
+        String sql = "select * from marca";
+        Connection conexao = new Conexao().getConexao();
+        try {
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            List<MarcaModelo> resultado = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                MarcaModelo marca = new MarcaModelo();
+                marca.setId(rs.getInt("id"));
+                marca.setNome(rs.getString("nome"));
+                marca.setDescricao(rs.getString("descricao"));
+
+                resultado.add(marca);
+            }
+            return resultado;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
 }

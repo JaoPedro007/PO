@@ -9,6 +9,10 @@ package modelo;
  * @author João Pedro
  */
 public class MarcaModelo {
+    
+    public MarcaModelo(){
+        
+    }
 
     public MarcaModelo(String nome, String descricao) {
         this.nome = nome;
@@ -35,6 +39,16 @@ public class MarcaModelo {
     public String toString() {
         return "MarcaModelo{" + "nome=" + nome + ", descricao=" + descricao + '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    int id;
     String nome;
     String descricao;
     

@@ -28,8 +28,8 @@ public class ProdutoDao {
                 ps.setString(3, produto.getQuantidade());
                 ps.setString(4, produto.getValorCusto());
                 ps.setString(5, produto.getValorVenda());
-                ps.setString(6, produto.getDepartamento());
-                ps.setString(7, produto.getMarca());
+                ps.setInt(6, produto.getDepartamento().getId());
+                ps.setInt(7, produto.getMarca().getId());
                 ps.execute();
             }
         }
@@ -83,8 +83,8 @@ public class ProdutoDao {
                 ps.setString(3, produto.getQuantidade());
                 ps.setString(4, produto.getValorCusto());
                 ps.setString(5, produto.getValorVenda());
-                ps.setString(6, produto.getDepartamento());
-                ps.setString(7, produto.getMarca());
+                ps.setInt(6, produto.getDepartamento().getId());
+                ps.setInt(7, produto.getMarca().getId());
                 ps.setString(8, produto.getCodigo());
 
                 ps.executeUpdate();

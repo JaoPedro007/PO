@@ -4,6 +4,9 @@
  */
 package view;
 
+import view.dialogs.DialogCliente;
+import view.dialogs.DialogProduto;
+import view.dialogs.DialogPagamento;
 import dao.VendaClienteDao;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;

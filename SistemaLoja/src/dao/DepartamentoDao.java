@@ -75,4 +75,29 @@ public class DepartamentoDao {
 
     }
 
+    public List<DepartamentoModelo> buscar() {
+        String sql = "select * from departamento";
+        Connection conexao = new Conexao().getConexao();
+        try {
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            List<DepartamentoModelo> resultado = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                DepartamentoModelo departamento = new DepartamentoModelo();
+                departamento.setId(rs.getInt("id"));
+                departamento.setNome(rs.getString("nome"));
+                departamento.setDescricao(rs.getString("descricao"));
+
+                resultado.add(departamento);
+            }
+            return resultado;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
